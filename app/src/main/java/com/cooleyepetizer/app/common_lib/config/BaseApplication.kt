@@ -6,7 +6,7 @@ import kotlin.properties.Delegates
 class BaseApplication  : Application(){
 
     companion object {
-        lateinit var instance: BaseApplication
+        var instance: BaseApplication by Delegates.notNull()
     }
 
     override fun onCreate() {

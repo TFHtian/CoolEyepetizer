@@ -17,7 +17,6 @@ class TextActivity : BaseActivity() {
     override fun initView() {
         viewModel = ViewModelProviders.of(this)[PlaceViewModel::class.java]
         setCenterTitle("测试")
-
         viewModel?.getPlace(this)
 //        showInitLoadView(true)
 //        mBinding = DataBindingUtil.bind(ll_test)

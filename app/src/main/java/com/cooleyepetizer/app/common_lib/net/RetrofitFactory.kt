@@ -99,14 +99,23 @@ open class RetrofitFactory() {
 
     companion object {
 
-        private val mRetrofitFactory: RetrofitFactory = RetrofitFactory()
+        @Volatile
+        private var mRetrofitFactory: RetrofitFactory? = null
 
-        fun getInstance(): RetrofitFactory {
-            return mRetrofitFactory
-        }
+        val instance: RetrofitFactory
+            get() {
+                if (mRetrofitFactory == null) {
+                    synchronized(RetrofitFactory::class.java) {
+                        if (mRetrofitFactory == null)
+                            mRetrofitFactory = RetrofitFactory()
+                    }
+
+                }
+                return mRetrofitFactory!!
+            }
 
         fun <T> createService(service: Class<T>): T {
-            return getInstance().retrofit.create(service)
+            return instance.retrofit.create(service)
         }
 
         /**
@@ -114,9 +123,10 @@ open class RetrofitFactory() {
          */
         fun <T> executeResult(observable: Observable<Response<T>>, subscriber: ResultObserver<T>) {
             observable.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(subscriber)
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(subscriber)
         }
 
     }
+
 }
