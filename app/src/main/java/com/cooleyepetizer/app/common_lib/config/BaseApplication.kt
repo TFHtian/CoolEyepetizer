@@ -1,9 +1,9 @@
 package com.cooleyepetizer.app.common_lib.config
 
-import android.app.Application
+import androidx.multidex.MultiDexApplication
 import kotlin.properties.Delegates
 
-class BaseApplication  : Application(){
+class BaseApplication  : MultiDexApplication(){
 
     companion object {
         var instance: BaseApplication by Delegates.notNull()

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.cooleyepetizer.app.test.TestItemViewModel" />
+
+        <variable
+            name="itemListener"
+            type="com.lpen.library.listener.OnViewModelClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingTop="10dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="10dp">
+
+        <ImageView
+            android:id="@+id/imgAvatar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:contentDescription="@string/app_name"
+            android:onClick="@{(v) -> itemListener.onClick(v, viewModel)}"
+            android:scaleType="centerCrop" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="@{viewModel.nickName}"
+            android:textColor="@color/color_333333"
+            android:textSize="15sp"
+            tools:text="用户名" />
+
+        <ImageView
+            android:id="@+id/imgMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/app_name"
+            android:onClick="@{(v) -> itemListener.onClick(v, viewModel)}"
+            android:src="@drawable/ic_menu"
+            tools:targetApi="lollipop" />
+
+    </LinearLayout>
+
+</layout>

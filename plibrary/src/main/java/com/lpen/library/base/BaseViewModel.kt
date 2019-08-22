@@ -6,6 +6,8 @@ import androidx.databinding.ObservableInt
 
 
 /**
+ * Activity 使用的 ViewModel 继承，控制 Title
+ *
  * @author android_p
  * @date 2019/8/22
  */

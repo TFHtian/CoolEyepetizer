@@ -11,8 +11,8 @@ import com.lpen.library.databinding.DialogLoadingBinding
 
 
 /**
- * @author pwang@ipzoe.com
- * @date 2019/4/24
+ * @author android_p
+ * @date 2019/8/22
  */
 class LoadingDialog(context: Context, text: String? = ""): BaseDialog(context, Gravity.CENTER) {
 

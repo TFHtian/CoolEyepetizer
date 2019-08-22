@@ -13,7 +13,7 @@ import android.webkit.WebViewClient
 
 /**
  * @author android_p
- * @date 2019/8/14
+ * @date 2019/8/22
  */
 fun Activity.initStatusBar() {
     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
