@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.lpen.library.base.BaseViewModel" />
+
+        <variable
+            name="listener"
+            type="com.lpen.library.listener.OnBindClickListener" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fitsSystemWindows="true"
+            android:gravity="bottom"
+            tools:background="@color/white">
+
+            <ImageView
+                android:id="@+id/imgBack"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{(v) -> listener.onClick(v)}"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:src="@drawable/ic_back_black"
+                app:isShow="@{viewModel.showBack}"
+                tools:targetApi="lollipop" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="8"
+                android:maxLines="1"
+                android:text="@{viewModel.title}"
+                android:textColor="@color/color_333333"
+                android:textSize="16sp"
+                tools:text="标题" />
+
+            <TextView
+                android:id="@+id/txtMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLength="3"
+                android:maxLines="1"
+                android:onClick="@{(v) -> listener.onClick(v)}"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:text="@{viewModel.menuText}"
+                android:textColor="@color/color_sub"
+                android:textSize="15sp"
+                app:isShow="@{viewModel.showMenuTxt}"
+                tools:targetApi="lollipop"
+                tools:text="菜单" />
+
+            <ImageView
+                android:id="@+id/imgMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="48dp"
+                android:layout_alignParentEnd="true"
+                android:background="?android:attr/selectableItemBackgroundBorderless"
+                android:contentDescription="@string/app_name"
+                android:onClick="@{(v) -> listener.onClick(v)}"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:src="@drawable/ic_menu"
+                app:iconRes="@{viewModel.menuIcon}"
+                app:isShow="@{viewModel.showMenuImg}"
+                tools:targetApi="lollipop" />
+
+        </RelativeLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:background="#999999" />
+
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+</layout>

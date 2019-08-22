@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- 设置 View DataBinding 事件. -->
+    <declare-styleable name="View">
+        <attr name="isShow" format="boolean" />
+        <attr name="isVisible" format="boolean" />
+    </declare-styleable>
+
+    <!-- 设置 ImageView DataBinding 事件. -->
+    <declare-styleable name="ImageView">
+        <attr name="iconRes" format="integer" />
+    </declare-styleable>
+
+</resources>
