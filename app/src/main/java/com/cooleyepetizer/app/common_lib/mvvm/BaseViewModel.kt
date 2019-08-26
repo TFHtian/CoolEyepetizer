@@ -1,42 +1,37 @@
 package com.cooleyepetizer.app.common_lib.mvvm
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.cooleyepetizer.app.common_lib.net.ResultCallBack
-import org.jetbrains.anko.runOnUiThread
 
 /**
  * 基类列表VM
  */
-abstract class BaseViewModel(private val application: Application) : ViewModel(), ResultCallBack<ArrayList<Any>> {
+abstract class BaseViewModel: ViewModel() {
 
-    val dataList = MutableLiveData<ArrayList<Any>>()
+    private var mUIChangeLiveData: UIChangeLiveData? = null
 
+    private var showNoDataView: MutableLiveData<Boolean>? = null
 
-    open fun commitResult(result: ArrayList<Any>?) {
-        result?.apply {
-            dataList.value = result
+    fun getUC(): UIChangeLiveData {
+        if (mUIChangeLiveData == null) {
+            mUIChangeLiveData = UIChangeLiveData()
         }
+        return mUIChangeLiveData as UIChangeLiveData
     }
 
-    override fun onSuccess(result: ArrayList<Any>?) {
-        commitResult(result)
-    }
+    inner class UIChangeLiveData : MutableLiveData<Boolean>() {
 
-    override fun onCacheSuccess(result: ArrayList<Any>?) {
-        application.runOnUiThread {
-            result?.apply {
-                if (this.isNotEmpty()) {
-                    commitResult(result)
-                }
-            }
+        fun getShowNoDataViewEvent(): MutableLiveData<Boolean> {
+            return showNoDataView = MutableLiveData(showNoDataView)
         }
-    }
-
-    override fun onFailure() {
 
     }
 
+    protected fun createLiveData(liveData: MutableLiveData<Boolean>?): MutableLiveData<Boolean> {
+        if (liveData == null) {
+            liveData = MutableLiveData()
+        }
+        return liveData
+    }
 
 }
