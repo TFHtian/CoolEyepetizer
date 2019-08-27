@@ -5,7 +5,12 @@ import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityTextMvvmBinding
 import com.cooleyepetizer.app.viewmodel.PlaceViewModel
 
-class TextActivity : BaseMvvmActivity<ActivityTextMvvmBinding>() {
+class TextActivity : BaseMvvmActivity<ActivityTextMvvmBinding,PlaceViewModel>() {
+
+
+    override fun initViewModel(): PlaceViewModel {
+        return ViewModelProviders.of(this)[PlaceViewModel::class.java]
+    }
 
     private var viewModel : PlaceViewModel? = null
 
@@ -17,7 +22,6 @@ class TextActivity : BaseMvvmActivity<ActivityTextMvvmBinding>() {
         viewModel = ViewModelProviders.of(this)[PlaceViewModel::class.java]
         setCenterTitle("测试")
         viewModel?.getPlace(this)
-        showInitLoadView(true)
     }
 
     override fun initData() {

@@ -31,10 +31,6 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".Test2Activity">
-
-        </activity>
-
     </application>
 
 </manifest>

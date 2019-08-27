@@ -1,5 +1,6 @@
 package com.cooleyepetizer.app.common_lib.mvvm
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -8,30 +9,35 @@ import androidx.lifecycle.ViewModel
  */
 abstract class BaseViewModel: ViewModel() {
 
-    private var mUIChangeLiveData: UIChangeLiveData? = null
+//    private var mUIChangeLiveData: UIChangeLiveData? = null
 
-    private var showNoDataView: MutableLiveData<Boolean>? = null
+    private val showInitLoadView = MutableLiveData<Boolean>()
 
-    fun getUC(): UIChangeLiveData {
-        if (mUIChangeLiveData == null) {
-            mUIChangeLiveData = UIChangeLiveData()
-        }
-        return mUIChangeLiveData as UIChangeLiveData
+    fun postShowInitLoadView(show: Boolean) {
+
+        showInitLoadView?.value = show
     }
 
-    inner class UIChangeLiveData : MutableLiveData<Boolean>() {
-
-        fun getShowNoDataViewEvent(): MutableLiveData<Boolean> {
-            return showNoDataView = MutableLiveData(showNoDataView)
-        }
-
+    fun getInitUI():MutableLiveData<Boolean> {
+        return showInitLoadView
     }
 
-    protected fun createLiveData(liveData: MutableLiveData<Boolean>?): MutableLiveData<Boolean> {
-        if (liveData == null) {
-            liveData = MutableLiveData()
-        }
-        return liveData
-    }
+
+
+//    fun getUC(): UIChangeLiveData {
+//        if (mUIChangeLiveData == null) {
+//            mUIChangeLiveData = UIChangeLiveData()
+//        }
+//        return mUIChangeLiveData as UIChangeLiveData
+//    }
+//
+//    inner class UIChangeLiveData : MutableLiveData<Boolean>() {
+//
+//        fun getShowInitLoadView(): MutableLiveData<Boolean> {
+//            return  showInitLoadView
+//        }
+//    }
+
+
 
 }
