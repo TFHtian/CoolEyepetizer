@@ -29,6 +29,11 @@ abstract class BaseMvvmActivity<DB : ViewDataBinding,  VM : BaseViewModel> : Bas
             Log.e("iiiiiiii-----", it.toString())
             showInitLoadView(it)
         })
+
+        mViewModel?.getData()?.observe(this, Observer<Boolean> {
+            //LiveData数据变化后的回调
+            Log.e("aaaaaaaaa-----", it.toString())
+        })
     }
 
 }

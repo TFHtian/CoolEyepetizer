@@ -9,7 +9,6 @@ import androidx.lifecycle.ViewModel
  */
 abstract class BaseViewModel: ViewModel() {
 
-//    private var mUIChangeLiveData: UIChangeLiveData? = null
 
     private val showInitLoadView = MutableLiveData<Boolean>()
 
@@ -24,20 +23,18 @@ abstract class BaseViewModel: ViewModel() {
 
 
 
-//    fun getUC(): UIChangeLiveData {
-//        if (mUIChangeLiveData == null) {
-//            mUIChangeLiveData = UIChangeLiveData()
-//        }
-//        return mUIChangeLiveData as UIChangeLiveData
-//    }
-//
-//    inner class UIChangeLiveData : MutableLiveData<Boolean>() {
-//
-//        fun getShowInitLoadView(): MutableLiveData<Boolean> {
-//            return  showInitLoadView
-//        }
-//    }
+    private var mData: MutableLiveData<Boolean>? = null
+    fun getData(): MutableLiveData<Boolean> {
+        if (mData == null) {
+            mData = MutableLiveData()
+        }
+        return mData as MutableLiveData<Boolean>
+    }
 
+    fun setData(data: Boolean) {
+        //更新livedata中的值
+        mData!!.value = data
+    }
 
 
 }

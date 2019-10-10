@@ -12,6 +12,10 @@ class PlaceViewModel : BaseViewModel() {
 
     fun getPlace(activity: AppCompatActivity) {
         postShowInitLoadView(true)
+
+        setData(true)
+
+
         PlaceRepository(activity).getPlace()?.observe(activity, Observer {
             Log.e("gggggggg", Gson().toJson(it))
         })
