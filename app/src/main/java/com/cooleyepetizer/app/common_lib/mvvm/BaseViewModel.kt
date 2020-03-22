@@ -1,13 +1,23 @@
 package com.cooleyepetizer.app.common_lib.mvvm
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
 /**
  * 基类列表VM
  */
-abstract class BaseViewModel: ViewModel() {
+abstract class BaseViewModel : ViewModel() {
+
+    var absLiveData = MutableLiveData<Boolean>()
+        private set
+
+    fun setAbsLiveDataValue(value: Boolean) {
+        absLiveData.value = value
+    }
+
+    fun postAbsLiveDataValue(value: Boolean) {
+        absLiveData.postValue(value)
+    }
 
 
     private val showInitLoadView = MutableLiveData<Boolean>()
@@ -17,10 +27,9 @@ abstract class BaseViewModel: ViewModel() {
         showInitLoadView?.value = show
     }
 
-    fun getInitUI():MutableLiveData<Boolean> {
+    fun getInitUI(): MutableLiveData<Boolean> {
         return showInitLoadView
     }
-
 
 
     private var mData: MutableLiveData<Boolean>? = null

@@ -1,5 +1,6 @@
 package com.cooleyepetizer.app.viewmodel
 
+import android.os.Handler
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.appcompat.app.AppCompatActivity
@@ -10,15 +11,23 @@ import com.google.gson.Gson
 
 class PlaceViewModel : BaseViewModel() {
 
+
+    private var count = 0
+
     fun getPlace(activity: AppCompatActivity) {
-        postShowInitLoadView(true)
 
-        setData(true)
+        setAbsLiveDataValue(true)
+        loop()
+    }
 
-
-        PlaceRepository(activity).getPlace()?.observe(activity, Observer {
-            Log.e("gggggggg", Gson().toJson(it))
-        })
+    private fun loop() {
+        count ++
+        Handler().postDelayed({
+            setAbsLiveDataValue((Math.random() * 10).toInt() % 2 == 0)
+            if (count < 10) {
+                loop()
+            }
+        }, 3000)
     }
 
 }
