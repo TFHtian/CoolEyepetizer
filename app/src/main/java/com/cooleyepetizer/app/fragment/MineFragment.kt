@@ -1,9 +1,7 @@
-package com.cooleyepetizer.app
+package com.cooleyepetizer.app.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.BaseFragment
 
 class MineFragment  : BaseFragment() {

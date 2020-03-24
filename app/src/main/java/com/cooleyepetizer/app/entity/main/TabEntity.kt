@@ -1,4 +1,4 @@
-package com.cooleyepetizer.app
+package com.cooleyepetizer.app.entity.main
 
 import com.flyco.tablayout.listener.CustomTabEntity
 

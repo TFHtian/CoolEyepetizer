@@ -1,4 +1,4 @@
-package com.cooleyepetizer.app
+package com.cooleyepetizer.app.entity.place
 
 import com.google.gson.annotations.SerializedName
 import org.litepal.crud.LitePalSupport

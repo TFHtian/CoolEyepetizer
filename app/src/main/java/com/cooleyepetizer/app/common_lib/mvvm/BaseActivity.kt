@@ -3,6 +3,7 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
@@ -11,7 +12,6 @@ import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.jaeger.library.StatusBarUtil
-import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.base_common_layout.*
 import kotlinx.android.synthetic.main.common_toolbar.*
 import kotlinx.android.synthetic.main.stub_init_loading.*
@@ -93,17 +93,20 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
     }
 
     open fun showInitLoadView(show: Boolean) {
+        Log.e("bbbbb","------$show")
         viewHide()
         if(mViewStubInitLoading==null){
             mViewStubInitLoading = Circle()
             mViewStubInitLoading!!.color = resources.getColor(R.color.textTitleColor)
         }
         if (show){
+            Log.e("bbbbb","------2")
             view_stub_init_loading.visibility = View.VISIBLE
             view_stub_content.visibility = View.GONE
             iv_init_loading.setImageDrawable(mViewStubInitLoading)
             mViewStubInitLoading!!.start()
-        }else{
+        } else{
+            Log.e("bbbbb","------3")
             view_stub_init_loading.visibility = View.GONE
             view_stub_content.visibility = View.VISIBLE
             mViewStubInitLoading!!.stop()
@@ -175,9 +178,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
     open abstract fun initData()
 
-    open fun initListener() {
-
-    }
+    open abstract fun initListener()
 
     override fun finishActivity() {
         finish()

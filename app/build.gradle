@@ -81,6 +81,8 @@ dependencies {
     implementation('com.flyco.tablayout:FlycoTabLayout_Lib:2.1.0@aar') {
         exclude group: 'com.android.support', module: 'support-v4'
     }
+
+    //lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha03'
 
 

@@ -1,7 +1,8 @@
-package com.cooleyepetizer.app
+package com.cooleyepetizer.app.activity.main
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.cooleyepetizer.app.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {

@@ -21,9 +21,9 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
 
-        <activity android:name=".MainActivity"/>
+        <activity android:name=".activity.main.MainActivity"/>
 
-        <activity android:name=".TextActivity">
+        <activity android:name=".activity.place.PlaceTextActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 

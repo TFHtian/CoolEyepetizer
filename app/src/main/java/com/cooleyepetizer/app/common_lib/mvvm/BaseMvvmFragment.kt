@@ -6,7 +6,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
-abstract class BaseMvvmActivity<DB : ViewDataBinding,  VM : BaseViewModel> : BaseActivity() {
+abstract class BaseMvvmFragment<DB : ViewDataBinding,  VM : BaseViewModel> : BaseFragment() {
 
     var mBinding: DB? = null
     var mViewModel: VM? = null
@@ -18,8 +18,7 @@ abstract class BaseMvvmActivity<DB : ViewDataBinding,  VM : BaseViewModel> : Bas
     }
 
     private fun initViewDataBinding() {
-        val sonView = LayoutInflater.from(this).inflate(onBindLayout(),null)
-        mBinding = DataBindingUtil.bind(sonView)
+        mBinding = DataBindingUtil.inflate(LayoutInflater.from(mActivity), onBindLayout(), mContentView, true)
         mViewModel = createViewModel()
     }
 
@@ -53,5 +52,4 @@ abstract class BaseMvvmActivity<DB : ViewDataBinding,  VM : BaseViewModel> : Bas
     override fun initData() {}
 
     override fun initListener() {}
-
 }

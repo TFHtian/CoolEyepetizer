@@ -8,42 +8,24 @@ import androidx.lifecycle.ViewModel
  */
 abstract class BaseViewModel : ViewModel() {
 
-    var absLiveData = MutableLiveData<Boolean>()
-        private set
+    var showInitLoadView = MutableLiveData<Boolean>()
+    var showTransLoadingView = MutableLiveData<Boolean>()
+    var showNoDataView = MutableLiveData<Boolean>()
+    var showNetWorkErrView = MutableLiveData<Boolean>()
 
-    fun setAbsLiveDataValue(value: Boolean) {
-        absLiveData.value = value
+    fun setShowInitLoadView(value: Boolean){
+        showInitLoadView.value =value
     }
 
-    fun postAbsLiveDataValue(value: Boolean) {
-        absLiveData.postValue(value)
+    fun setShowTransLoadingView(value: Boolean) {
+        showTransLoadingView.value = value
     }
 
-
-    private val showInitLoadView = MutableLiveData<Boolean>()
-
-    fun postShowInitLoadView(show: Boolean) {
-
-        showInitLoadView?.value = show
+    fun setShowNoDataView(value: Boolean){
+        showNoDataView.value =value
     }
 
-    fun getInitUI(): MutableLiveData<Boolean> {
-        return showInitLoadView
+    fun setShowNetWorkErrView(value: Boolean){
+        showNetWorkErrView.value =value
     }
-
-
-    private var mData: MutableLiveData<Boolean>? = null
-    fun getData(): MutableLiveData<Boolean> {
-        if (mData == null) {
-            mData = MutableLiveData()
-        }
-        return mData as MutableLiveData<Boolean>
-    }
-
-    fun setData(data: Boolean) {
-        //更新livedata中的值
-        mData!!.value = data
-    }
-
-
 }

@@ -3,7 +3,6 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -20,9 +19,9 @@ import kotlinx.android.synthetic.main.stub_trans_loading.*
 
 abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
 
-    private lateinit var mActivity: RxAppCompatActivity
+    protected lateinit var mActivity: RxAppCompatActivity
+    protected var mContentView: ViewGroup? = null
     private lateinit var mView: View
-    private var mContentView: ViewGroup? = null
     private var mViewStubInitLoading: Circle? = null
     private var mLoadingTransView: ThreeBounce? =null
     private var isViewCreated = false
@@ -35,16 +34,16 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(R.layout.base_common_layout, container, false)
-        return mView
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
         initContentView()
         setStatusBar()
         initToolBar()
         initView()
         initListener()
+        return mView
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         isViewCreated = true
         //如果启用了懒加载就进行懒加载，否则就进行预加载
         if (enableLazyData()) {

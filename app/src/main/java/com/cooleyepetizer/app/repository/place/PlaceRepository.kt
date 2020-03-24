@@ -1,11 +1,11 @@
-package com.cooleyepetizer.app
+package com.cooleyepetizer.app.repository.place
 
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import com.cooleyepetizer.app.common_lib.net.ResultProgressObserver
 import com.cooleyepetizer.app.common_lib.net.ResultTipObserver
 import com.cooleyepetizer.app.common_lib.net.RetrofitFactory
+import com.cooleyepetizer.app.entity.place.Province
 import com.cooleyepetizer.app.service.PlaceService
 import java.util.ArrayList
 
