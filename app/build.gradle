@@ -85,5 +85,12 @@ dependencies {
     //lifecycle
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha03'
 
+    //smart_refresh
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.2'
 
+    //bottom_tab
+    implementation 'me.majiajie:pager-bottom-tab-strip:2.3.0X'
+
+    //XBanner
+    implementation 'com.github.xiaohaibin:XBanner:androidx_v1.0.6'
 }

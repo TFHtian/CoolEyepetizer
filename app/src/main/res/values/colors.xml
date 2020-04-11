@@ -8,5 +8,12 @@
     <color name="colorWhite">#ffffffff</color>
 
     <!--title颜色-->
-    <color name="textTitleColor">#292928</color>
+    <color name="textTitleColor">#0A0909</color>
+    <color name="textSubTitleColor">#252121</color>
+    <!--分割线颜色-->
+    <color name="line_color">#EEF2F2</color>
+    <!--底部导航字体颜色-->
+    <color name="main_bottom_tv_s">#2c2c2c</color>
+    <color name="main_bottom_tv_n">#8a8a8a</color>
+
 </resources>

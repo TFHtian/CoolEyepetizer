@@ -28,7 +28,7 @@ abstract class BaseMvvmFragment<DB : ViewDataBinding,  VM : BaseViewModel> : Bas
 
     abstract fun onBindViewModel(): Class<VM>
 
-    private fun initBaseViewObservable() {
+    open fun initBaseViewObservable() {
 
         mViewModel?.showInitLoadView?.observe(this, Observer {
             showInitLoadView(it)

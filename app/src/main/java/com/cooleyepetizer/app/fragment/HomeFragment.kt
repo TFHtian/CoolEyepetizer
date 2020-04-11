@@ -6,7 +6,7 @@ import com.cooleyepetizer.app.common_lib.mvvm.BaseFragment
 class HomeFragment : BaseFragment() {
 
     override fun initView() {
-        setCenterTitle("我的")
+        setCenterTitle("首页")
     }
 
     override fun initData() {

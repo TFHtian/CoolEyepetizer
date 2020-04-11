@@ -34,16 +34,16 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         mView = inflater.inflate(R.layout.base_common_layout, container, false)
-        initContentView()
-        setStatusBar()
-        initToolBar()
-        initView()
-        initListener()
         return mView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initContentView()
+        setStatusBar()
+        initToolBar()
+        initView()
+        initListener()
         isViewCreated = true
         //如果启用了懒加载就进行懒加载，否则就进行预加载
         if (enableLazyData()) {
