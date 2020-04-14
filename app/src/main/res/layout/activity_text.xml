@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
-
     <data>
+        <variable name="u"
+                  type="com.cooleyepetizer.app.entity.place.User"/>
         <variable name="model"
-                type="com.cooleyepetizer.app.viewmodel.PlaceViewModel"/>
+                  type="com.cooleyepetizer.app.viewmodel.PlaceViewModel"/>
         <variable name="listener"
-                type="com.cooleyepetizer.lib.OnViewClickListener"/>
+        type="com.cooleyepetizer.lib.OnViewClickListener"/>
     </data>
-
     <LinearLayout
             android:id="@+id/ll_test"
             android:gravity="center"

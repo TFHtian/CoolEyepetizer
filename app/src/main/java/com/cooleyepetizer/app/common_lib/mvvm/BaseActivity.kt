@@ -3,11 +3,13 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
+import com.cooleyepetizer.app.databinding.ActivityBaseBindBinding
+import com.cooleyepetizer.app.databinding.BaseCommonLayoutBinding
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.jaeger.library.StatusBarUtil
@@ -20,17 +22,22 @@ import kotlinx.android.synthetic.main.stub_trans_loading.*
 abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
 
     private var mContentView: ViewGroup? = null
-    private var mViewStubInitLoading: Circle? = null
-    private var mLoadingTransView: ThreeBounce? =null
+    private var mStubInitLoading: Circle? = null
+    private var mTransVLoading: ThreeBounce? =null
+    private var stubInitLoadingView: View? = null
+    private var transVLoadingView: View? = null
+    private var netErrorView: View? = null
+    private var noDataView: View? = null
+    private lateinit var mBaseBinding : BaseCommonLayoutBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.base_common_layout)
+        //setContentView(R.layout.base_common_layout)
+        mBaseBinding = DataBindingUtil.setContentView(this, R.layout.base_common_layout)
         initContentView()
         setStatusBar()
         initToolBar()
         initView()
-        initListener()
         initData()
     }
 
@@ -93,82 +100,63 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
     }
 
     open fun showInitLoadView(show: Boolean) {
-        Log.e("bbbbb","------$show")
-        viewHide()
-        if(mViewStubInitLoading==null){
-            mViewStubInitLoading = Circle()
-            mViewStubInitLoading!!.color = resources.getColor(R.color.textTitleColor)
+        if(mStubInitLoading==null){
+            mStubInitLoading = Circle()
+            mStubInitLoading!!.color = resources.getColor(R.color.textTitleColor)
         }
+        if (stubInitLoadingView == null) {
+            stubInitLoadingView = view_stub_init_loading.inflate()
+        }
+        stubInitLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
         if (show){
-            Log.e("bbbbb","------2")
-            view_stub_init_loading.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-            iv_init_loading.setImageDrawable(mViewStubInitLoading)
-            mViewStubInitLoading!!.start()
+            iv_init_loading.setImageDrawable(mStubInitLoading)
+            mStubInitLoading!!.start()
         } else{
-            Log.e("bbbbb","------3")
-            view_stub_init_loading.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
-            mViewStubInitLoading!!.stop()
+            mStubInitLoading!!.stop()
         }
     }
 
     open fun showTransLoadingView(show: Boolean) {
-        viewHide()
-        if (mLoadingTransView==null){
-            mLoadingTransView = ThreeBounce()
-            mLoadingTransView!!.color = resources.getColor(R.color.textTitleColor)
+        if (mTransVLoading==null){
+            mTransVLoading = ThreeBounce()
+            mTransVLoading!!.color = resources.getColor(R.color.textTitleColor)
         }
+        if(transVLoadingView == null){
+            transVLoadingView = view_stub_trans_loading.inflate()
+        }
+        transVLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
         if (show){
-            view_stub_trans_loading.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-            iv_trans_loading.setImageDrawable(mLoadingTransView)
-            mLoadingTransView!!.start()
+            iv_trans_loading.setImageDrawable(mTransVLoading)
+            mTransVLoading!!.start()
         }else{
-            view_stub_trans_loading.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
-            mLoadingTransView!!.stop()
+            mTransVLoading!!.stop()
         }
     }
 
     open fun showNoDataView(show: Boolean) {
-        viewHide()
         stopLoading()
-        if (show){
-            view_stub_no_data.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-        }else{
-            view_stub_no_data.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
+        if (noDataView == null){
+            noDataView = view_stub_no_data.inflate()
         }
+        noDataView?.visibility = if (show) View.VISIBLE else View.GONE
+        view_stub_content.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     open fun showNetWorkErrView(show: Boolean) {
-        viewHide()
         stopLoading()
-        if (show){
-            view_stub_error.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-        }else{
-            view_stub_error.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
+        if (netErrorView == null){
+            netErrorView = view_stub_error.inflate()
         }
-    }
-
-    private fun viewHide(){
-        view_stub_error.visibility = View.GONE
-        view_stub_no_data.visibility = View.GONE
-        view_stub_content.visibility = View.GONE
-        view_stub_init_loading.visibility = View.GONE
-        view_stub_trans_loading.visibility = View.GONE
+        netErrorView?.visibility = if (show) View.VISIBLE else View.GONE
+        view_stub_content.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     private fun stopLoading(){
-        if (mViewStubInitLoading!=null&&mViewStubInitLoading!!.isRunning){
-            mViewStubInitLoading!!.stop()
+        if (mStubInitLoading!=null&&mStubInitLoading!!.isRunning){
+            mStubInitLoading!!.stop()
         }
-        if (mLoadingTransView!=null&&mLoadingTransView!!.isRunning){
-            mLoadingTransView!!.stop()
+        if (mTransVLoading!=null&&mTransVLoading!!.isRunning){
+            mTransVLoading!!.stop()
         }
     }
 
@@ -177,8 +165,6 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
     open abstract fun initView()
 
     open abstract fun initData()
-
-    open abstract fun initListener()
 
     override fun finishActivity() {
         finish()
@@ -190,8 +176,8 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
 
     override fun onDestroy() {
         super.onDestroy()
-        mViewStubInitLoading = null
-        mLoadingTransView = null
+        mStubInitLoading = null
+        mTransVLoading = null
     }
 
 }

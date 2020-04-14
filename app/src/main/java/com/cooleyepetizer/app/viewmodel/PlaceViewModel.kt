@@ -3,6 +3,9 @@ package com.cooleyepetizer.app.viewmodel
 import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.ObservableField
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import com.cooleyepetizer.app.repository.place.PlaceRepository
 import com.cooleyepetizer.app.common_lib.mvvm.BaseViewModel
 import com.cooleyepetizer.app.entity.place.User
@@ -10,17 +13,13 @@ import com.google.gson.Gson
 
 class PlaceViewModel : BaseViewModel() {
 
-    val name: String = "haha"
-
-    var user: User? = null
-
+    val user = ObservableField<User>()
     fun createUser(){
-        user = User("甜甜","女")
+        user?.set(User("甜甜","女"))
     }
 
     fun updateName(){
-        user?.name = "灰灰"
-        Log.e("ccccc", user?.name)
+        user?.set(User("灰灰","女"))
     }
 
     fun getPlace(activity: AppCompatActivity) {
@@ -29,7 +28,6 @@ class PlaceViewModel : BaseViewModel() {
             Log.e("gggggggg", Gson().toJson(it))
             setShowInitLoadView(false)
         })
-        setShowInitLoadView(false)
+        //setShowInitLoadView(false)
     }
-
 }

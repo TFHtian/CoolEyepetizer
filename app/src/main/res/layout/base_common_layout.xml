@@ -1,52 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cooleyepetizer.app.common_lib.mvvm.BaseActivity">
-
-    <include
-        layout="@layout/common_toolbar"/>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/toolbar_root">
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:id="@+id/view_stub_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent">
 
-        <ViewStub
-            android:id="@+id/view_stub_init_loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout="@layout/stub_init_loading" />
+        <include layout="@layout/common_toolbar" />
 
-        <ViewStub
-            android:id="@+id/view_stub_trans_loading"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout="@layout/stub_trans_loading"
-            />
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/toolbar_root">
 
-        <ViewStub
-            android:id="@+id/view_stub_no_data"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout="@layout/stub_no_data"
-            />
+            <LinearLayout
+                    android:id="@+id/view_stub_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical" />
 
-        <ViewStub
-            android:id="@+id/view_stub_error"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout="@layout/stub_net_error"
-            />
+            <ViewStub
+                    android:id="@+id/view_stub_init_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout="@layout/stub_init_loading" />
+
+            <ViewStub
+                    android:id="@+id/view_stub_trans_loading"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout="@layout/stub_trans_loading" />
+
+            <ViewStub
+                    android:id="@+id/view_stub_no_data"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout="@layout/stub_no_data" />
+
+            <ViewStub
+                    android:id="@+id/view_stub_error"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout="@layout/stub_net_error" />
+
+        </RelativeLayout>
 
     </RelativeLayout>
-
-</RelativeLayout>
+</layout>

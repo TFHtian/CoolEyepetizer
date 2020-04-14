@@ -65,8 +65,6 @@ class MainActivity : BaseActivity() {
 
     override fun initData() {}
 
-    override fun initListener() {}
-
     override fun onBindLayout(): Int {
         return R.layout.activity_main
     }

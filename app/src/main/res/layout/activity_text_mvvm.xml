@@ -3,10 +3,12 @@
 
     <data>
 
-        <variable name="model"
+        <variable name="viewModel"
                   type="com.cooleyepetizer.app.viewmodel.PlaceViewModel"/>
         <variable name="u"
                   type="com.cooleyepetizer.app.entity.place.User"/>
+        <variable name="listener"
+                  type="com.cooleyepetizer.lib.OnViewClickListener"/>
     </data>
 
     <LinearLayout
@@ -37,7 +39,7 @@
                 android:text="change"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:onClick="@{() -> model.updateName()}"/>
+                android:onClick="@{(v) -> listener.onClick(v)}"/>
     </LinearLayout>
 
 </layout>
