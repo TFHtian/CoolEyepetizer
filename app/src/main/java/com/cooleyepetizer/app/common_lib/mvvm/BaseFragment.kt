@@ -6,6 +6,9 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.Fragment
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
 import com.github.ybq.android.spinkit.style.Circle
@@ -17,15 +20,19 @@ import kotlinx.android.synthetic.main.common_toolbar.*
 import kotlinx.android.synthetic.main.stub_init_loading.*
 import kotlinx.android.synthetic.main.stub_trans_loading.*
 
-abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
+abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
 
-    protected lateinit var mActivity: RxAppCompatActivity
-    protected var mContentView: ViewGroup? = null
+    private lateinit var mActivity: RxAppCompatActivity
     private lateinit var mView: View
-    private var mViewStubInitLoading: Circle? = null
-    private var mLoadingTransView: ThreeBounce? =null
+    private var mStubInitLoading: Circle? = null
+    private var mTransVLoading: ThreeBounce? =null
+    private var stubInitLoadingView: View? = null
+    private var transVLoadingView: View? = null
+    private var netErrorView: View? = null
+    private var noDataView: View? = null
     private var isViewCreated = false
     private var isViewVisible = false
+    protected var mBinding: DB? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +50,6 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
         setStatusBar()
         initToolBar()
         initView()
-        initListener()
         isViewCreated = true
         //如果启用了懒加载就进行懒加载，否则就进行预加载
         if (enableLazyData()) {
@@ -54,13 +60,11 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
     }
 
     open fun initContentView() {
-        setView(onBindLayout())
-    }
-
-    private fun setView(layoutId: Int) {
-        mContentView = View.inflate(mActivity, layoutId, null) as ViewGroup
-        view_stub_content.removeAllViews()
-        view_stub_content.addView(mContentView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        mBinding = DataBindingUtil.bind(LayoutInflater.from(mActivity).inflate(onBindLayout(), null))
+        content?.addView(mBinding!!.root, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ))
     }
 
     private fun setStatusBar(){
@@ -128,79 +132,65 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
     }
 
     open fun showInitLoadView(show: Boolean) {
-        viewHide()
-        if(mViewStubInitLoading==null){
-            mViewStubInitLoading = Circle()
-            mViewStubInitLoading!!.color = resources.getColor(R.color.textTitleColor)
+        if(mStubInitLoading==null){
+            mStubInitLoading = Circle()
+            mStubInitLoading!!.color = resources.getColor(R.color.textTitleColor)
         }
+        if (stubInitLoadingView == null) {
+            stubInitLoadingView = view_stub_init_loading.inflate()
+        }
+        stubInitLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
         if (show){
-            view_stub_init_loading.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-            iv_init_loading.setImageDrawable(mViewStubInitLoading)
-            mViewStubInitLoading!!.start()
-        }else{
-            view_stub_init_loading.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
-            mViewStubInitLoading!!.stop()
+            iv_init_loading.setImageDrawable(mStubInitLoading)
+            mStubInitLoading!!.start()
+        } else{
+            mStubInitLoading!!.stop()
         }
     }
 
     open fun showTransLoadingView(show: Boolean) {
-        viewHide()
-        if (mLoadingTransView==null){
-            mLoadingTransView = ThreeBounce()
-            mLoadingTransView!!.color = resources.getColor(R.color.textTitleColor)
+        if (mTransVLoading==null){
+            mTransVLoading = ThreeBounce()
+            mTransVLoading!!.color = resources.getColor(R.color.textTitleColor)
         }
+        if(transVLoadingView == null){
+            transVLoadingView = view_stub_trans_loading.inflate()
+        }
+        transVLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
         if (show){
-            view_stub_trans_loading.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-            iv_trans_loading.setImageDrawable(mLoadingTransView)
-            mLoadingTransView!!.start()
+            iv_trans_loading.setImageDrawable(mTransVLoading)
+            mTransVLoading!!.start()
         }else{
-            view_stub_trans_loading.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
-            mLoadingTransView!!.stop()
+            mTransVLoading!!.stop()
         }
     }
 
     open fun showNoDataView(show: Boolean) {
-        viewHide()
         stopLoading()
-        if (show){
-            view_stub_no_data.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-        }else{
-            view_stub_no_data.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
+        if (noDataView == null){
+            noDataView = view_stub_no_data.inflate()
         }
+        noDataView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     open fun showNetWorkErrView(show: Boolean) {
-        viewHide()
         stopLoading()
-        if (show){
-            view_stub_error.visibility = View.VISIBLE
-            view_stub_content.visibility = View.GONE
-        }else{
-            view_stub_error.visibility = View.GONE
-            view_stub_content.visibility = View.VISIBLE
+        if (netErrorView == null){
+            netErrorView = view_stub_error.inflate()
         }
-    }
-
-    private fun viewHide(){
-        view_stub_error.visibility = View.GONE
-        view_stub_no_data.visibility = View.GONE
-        view_stub_content.visibility = View.GONE
-        view_stub_init_loading.visibility = View.GONE
-        view_stub_trans_loading.visibility = View.GONE
+        netErrorView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     private fun stopLoading(){
-        if (mViewStubInitLoading!=null&&mViewStubInitLoading!!.isRunning){
-            mViewStubInitLoading!!.stop()
+        if (mStubInitLoading!=null&&mStubInitLoading!!.isRunning){
+            mStubInitLoading!!.stop()
         }
-        if (mLoadingTransView!=null&&mLoadingTransView!!.isRunning){
-            mLoadingTransView!!.stop()
+        if (mTransVLoading!=null&&mTransVLoading!!.isRunning){
+            mTransVLoading!!.stop()
         }
     }
 
@@ -210,13 +200,7 @@ abstract class BaseFragment : androidx.fragment.app.Fragment(), IBaseView {
 
     open abstract fun initData()
 
-    open fun initListener() {
-
-    }
-
-    override fun finishActivity() {
-
-    }
+    override fun finishActivity() {}
 
     override fun getContext(): Context {
         return mActivity

@@ -1,24 +1,20 @@
 package com.cooleyepetizer.app.common_lib.mvvm
 
-import android.view.LayoutInflater
-import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 
-abstract class BaseMvvmFragment<DB : ViewDataBinding,  VM : BaseViewModel> : BaseFragment() {
+abstract class BaseMvvmFragment<DB : ViewDataBinding,  VM : BaseViewModel> : BaseFragment<DB>() {
 
-    var mBinding: DB? = null
-    var mViewModel: VM? = null
+    protected var mViewModel: VM? = null
 
     override fun initContentView() {
         super.initContentView()
-        initViewDataBinding()
+        initViewModel()
         initBaseViewObservable()
     }
 
-    private fun initViewDataBinding() {
-        mBinding = DataBindingUtil.inflate(LayoutInflater.from(mActivity), onBindLayout(), mContentView, true)
+    private fun initViewModel() {
         mViewModel = createViewModel()
     }
 
@@ -51,5 +47,4 @@ abstract class BaseMvvmFragment<DB : ViewDataBinding,  VM : BaseViewModel> : Bas
 
     override fun initData() {}
 
-    override fun initListener() {}
 }

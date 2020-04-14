@@ -1,28 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.viewpager.widget.ViewPager
-            android:id="@+id/main_view_page"
+    <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/main_tab"/>
+            android:layout_height="match_parent">
 
-    <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_1"
-            android:background="@color/line_color"
-            android:layout_alignParentBottom="true"
-            android:layout_marginBottom="@dimen/dp_56" />
+        <androidx.viewpager.widget.ViewPager
+                android:id="@+id/main_view_page"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/main_tab" />
 
-    <me.majiajie.pagerbottomtabstrip.PageNavigationView
-            android:id="@+id/main_tab"
-            android:elevation="@dimen/dp_8"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_56"
-            android:background="@color/colorWhite"
-            android:layout_alignParentBottom="true"/>
+        <View
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_1"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="@dimen/dp_56"
+                android:background="@color/line_color" />
 
-</RelativeLayout>
+        <me.majiajie.pagerbottomtabstrip.PageNavigationView
+                android:id="@+id/main_tab"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_56"
+                android:layout_alignParentBottom="true"
+                android:background="@color/colorWhite"
+                android:elevation="@dimen/dp_8" />
+
+    </RelativeLayout>
+
+</layout>

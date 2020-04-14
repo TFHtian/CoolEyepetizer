@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.adapter.main.CustomTabAdaptervar
 import com.cooleyepetizer.app.common_lib.mvvm.BaseActivity
+import com.cooleyepetizer.app.databinding.ActivityMainBinding
 import com.cooleyepetizer.app.fragment.CullingFragment
 import com.cooleyepetizer.app.fragment.FindFragment
 import com.cooleyepetizer.app.fragment.HomeFragment
@@ -14,7 +15,7 @@ import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
 import me.majiajie.pagerbottomtabstrip.item.NormalItemView
 import java.util.ArrayList
 
-class MainActivity : BaseActivity() {
+class MainActivity : BaseActivity<ActivityMainBinding>() {
 
     private val fragmentList = ArrayList<Fragment>()
     private var navigationController: NavigationController? = null
@@ -58,7 +59,7 @@ class MainActivity : BaseActivity() {
             .build()
 
         main_view_page.adapter = CustomTabAdaptervar(fragmentList,supportFragmentManager)
-        main_view_page.offscreenPageLimit = 2
+        main_view_page.offscreenPageLimit = 3
         navigationController?.setupWithViewPager(main_view_page)
         navigationController?.setSelect(0)
     }

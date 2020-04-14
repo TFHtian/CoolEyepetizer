@@ -3,9 +3,11 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
 import com.cooleyepetizer.app.databinding.ActivityBaseBindBinding
@@ -14,14 +16,14 @@ import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.jaeger.library.StatusBarUtil
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
+import kotlinx.android.synthetic.main.activity_base_bind.*
 import kotlinx.android.synthetic.main.base_common_layout.*
 import kotlinx.android.synthetic.main.common_toolbar.*
 import kotlinx.android.synthetic.main.stub_init_loading.*
 import kotlinx.android.synthetic.main.stub_trans_loading.*
 
-abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
+abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBaseView {
 
-    private var mContentView: ViewGroup? = null
     private var mStubInitLoading: Circle? = null
     private var mTransVLoading: ThreeBounce? =null
     private var stubInitLoadingView: View? = null
@@ -29,10 +31,10 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
     private var netErrorView: View? = null
     private var noDataView: View? = null
     private lateinit var mBaseBinding : BaseCommonLayoutBinding
+    protected var mBinding: DB? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //setContentView(R.layout.base_common_layout)
         mBaseBinding = DataBindingUtil.setContentView(this, R.layout.base_common_layout)
         initContentView()
         setStatusBar()
@@ -42,13 +44,11 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
     }
 
     open fun initContentView() {
-        setView(onBindLayout())
-    }
-
-    open fun setView(layoutId: Int) {
-        mContentView = View.inflate(this, layoutId, null) as ViewGroup
-        view_stub_content.removeAllViews()
-        view_stub_content.addView(mContentView, ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT))
+        mBinding = DataBindingUtil.bind(LayoutInflater.from(this).inflate(onBindLayout(), null))
+        content?.addView(mBinding!!.root, ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        ))
     }
 
     private fun setStatusBar(){
@@ -108,6 +108,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
             stubInitLoadingView = view_stub_init_loading.inflate()
         }
         stubInitLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
         if (show){
             iv_init_loading.setImageDrawable(mStubInitLoading)
             mStubInitLoading!!.start()
@@ -125,6 +126,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
             transVLoadingView = view_stub_trans_loading.inflate()
         }
         transVLoadingView?.visibility = if (show) View.VISIBLE else View.GONE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
         if (show){
             iv_trans_loading.setImageDrawable(mTransVLoading)
             mTransVLoading!!.start()
@@ -139,7 +141,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
             noDataView = view_stub_no_data.inflate()
         }
         noDataView?.visibility = if (show) View.VISIBLE else View.GONE
-        view_stub_content.visibility = if (show) View.GONE else View.VISIBLE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     open fun showNetWorkErrView(show: Boolean) {
@@ -148,7 +150,7 @@ abstract class BaseActivity : RxAppCompatActivity(), IBaseView {
             netErrorView = view_stub_error.inflate()
         }
         netErrorView?.visibility = if (show) View.VISIBLE else View.GONE
-        view_stub_content.visibility = if (show) View.GONE else View.VISIBLE
+        mBinding!!.root.visibility = if (show) View.GONE else View.VISIBLE
     }
 
     private fun stopLoading(){
