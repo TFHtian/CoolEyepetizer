@@ -17,7 +17,12 @@
     <string name="loading">加载中···</string>
 
     <string name="bottom_title_homepage">首页</string>
-    <string name="bottom_title_find">发现</string>
-    <string name="bottom_title_culling">精选</string>
+    <string name="bottom_title_recommend">推荐</string>
+    <string name="bottom_title_theatre">剧场</string>
     <string name="bottom_title_personal">我的</string>
+
+    <!--home-->
+    <string name="find">发现</string>
+    <string name="culling">精选</string>
+
 </resources>

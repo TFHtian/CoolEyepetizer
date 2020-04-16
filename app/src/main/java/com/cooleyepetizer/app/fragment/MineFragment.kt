@@ -2,9 +2,9 @@ package com.cooleyepetizer.app.fragment
 
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.BaseFragment
-import com.cooleyepetizer.app.databinding.FragmentTestBinding
+import com.cooleyepetizer.app.databinding.FragmentMineBinding
 
-class MineFragment  : BaseFragment<FragmentTestBinding>() {
+class MineFragment  : BaseFragment<FragmentMineBinding>() {
 
     override fun initView() {
         setCenterTitle("我的")
@@ -14,6 +14,6 @@ class MineFragment  : BaseFragment<FragmentTestBinding>() {
     }
 
     override fun onBindLayout(): Int {
-        return R.layout.fragment_test
+        return R.layout.fragment_mine
     }
 }

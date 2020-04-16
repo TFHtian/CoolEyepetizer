@@ -3,6 +3,7 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,6 +12,7 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
+import com.cooleyepetizer.app.utils.CommonUtils
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.jaeger.library.StatusBarUtil
@@ -67,9 +69,19 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
         ))
     }
 
-    private fun setStatusBar(){
-        StatusBarUtil.setColor(mActivity, resources.getColor(R.color.colorTheme), 0)
-        setStatusTextBlack(true)
+    open fun setStatusBar(){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            val layoutParams = status_bar.layoutParams
+            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
+            layoutParams.height = CommonUtils().getStatusHeight(mActivity)
+            status_bar.layoutParams = layoutParams
+            status_bar.setBackgroundColor(resources.getColor(R.color.colorThemeBg))
+            setStatusTextBlack(true)
+        }
+    }
+
+    open fun setStatusBarColor(resId : Int){
+        status_bar.setBackgroundColor(resources.getColor(resId))
     }
 
     //6.0后设置状态栏字体颜色
@@ -145,7 +157,9 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
             iv_init_loading.setImageDrawable(mStubInitLoading)
             mStubInitLoading!!.start()
         } else{
-            mStubInitLoading!!.stop()
+            Handler().postDelayed(Runnable {
+                mStubInitLoading!!.stop()
+            },500)
         }
     }
 
@@ -163,7 +177,9 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
             iv_trans_loading.setImageDrawable(mTransVLoading)
             mTransVLoading!!.start()
         }else{
-            mTransVLoading!!.stop()
+            Handler().postDelayed(Runnable {
+                mTransVLoading!!.stop()
+            },500)
         }
     }
 

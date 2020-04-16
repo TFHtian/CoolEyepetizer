@@ -3,6 +3,7 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +11,11 @@ import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
-import com.cooleyepetizer.app.databinding.ActivityBaseBindBinding
 import com.cooleyepetizer.app.databinding.BaseCommonLayoutBinding
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
 import com.jaeger.library.StatusBarUtil
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
-import kotlinx.android.synthetic.main.activity_base_bind.*
 import kotlinx.android.synthetic.main.base_common_layout.*
 import kotlinx.android.synthetic.main.common_toolbar.*
 import kotlinx.android.synthetic.main.stub_init_loading.*
@@ -51,8 +50,8 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
         ))
     }
 
-    private fun setStatusBar(){
-        StatusBarUtil.setColor(this, resources.getColor(R.color.colorTheme), 0)
+    open fun setStatusBar(){
+        StatusBarUtil.setColor(this, resources.getColor(R.color.colorThemeBg), 0)
         setStatusTextBlack(true)
     }
 
@@ -113,7 +112,9 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
             iv_init_loading.setImageDrawable(mStubInitLoading)
             mStubInitLoading!!.start()
         } else{
-            mStubInitLoading!!.stop()
+            Handler().postDelayed(Runnable {
+                mStubInitLoading!!.stop()
+            },500)
         }
     }
 
@@ -131,7 +132,9 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
             iv_trans_loading.setImageDrawable(mTransVLoading)
             mTransVLoading!!.start()
         }else{
-            mTransVLoading!!.stop()
+            Handler().postDelayed(Runnable {
+                mTransVLoading!!.stop()
+            },500)
         }
     }
 
@@ -162,11 +165,11 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
         }
     }
 
-    open abstract fun onBindLayout(): Int
+    abstract fun onBindLayout(): Int
 
-    open abstract fun initView()
+    abstract fun initView()
 
-    open abstract fun initData()
+    abstract fun initData()
 
     override fun finishActivity() {
         finish()
@@ -181,6 +184,5 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
         mStubInitLoading = null
         mTransVLoading = null
     }
-
 }
 

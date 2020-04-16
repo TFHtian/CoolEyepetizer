@@ -5,10 +5,9 @@ import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.adapter.main.CustomTabAdaptervar
 import com.cooleyepetizer.app.common_lib.mvvm.BaseActivity
 import com.cooleyepetizer.app.databinding.ActivityMainBinding
-import com.cooleyepetizer.app.fragment.CullingFragment
-import com.cooleyepetizer.app.fragment.FindFragment
-import com.cooleyepetizer.app.fragment.HomeFragment
-import com.cooleyepetizer.app.fragment.MineFragment
+import com.cooleyepetizer.app.fragment.*
+import com.cooleyepetizer.app.fragment.home.HomeFragment
+import com.jaeger.library.StatusBarUtil
 import kotlinx.android.synthetic.main.activity_main.*
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
@@ -23,8 +22,8 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initView() {
         isHideToolBar(true)
         fragmentList.add(HomeFragment())
-        fragmentList.add(FindFragment())
-        fragmentList.add(CullingFragment())
+        fragmentList.add(RecommendFragment())
+        fragmentList.add(TheatreFragment())
         fragmentList.add(MineFragment())
 
         navigationController = main_tab.custom()
@@ -39,14 +38,14 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 newItem(
                     R.drawable.find_n,
                     R.drawable.find_s,
-                    this.resources.getString(R.string.bottom_title_find)
+                    this.resources.getString(R.string.bottom_title_recommend)
                 )
             )
             .addItem(
                 newItem(
                     R.drawable.culling_n,
                     R.drawable.culling_s,
-                    this.resources.getString(R.string.bottom_title_culling)
+                    this.resources.getString(R.string.bottom_title_theatre)
                 )
             )
             .addItem(
@@ -62,6 +61,10 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         main_view_page.offscreenPageLimit = 3
         navigationController?.setupWithViewPager(main_view_page)
         navigationController?.setSelect(0)
+    }
+
+    override fun setStatusBar() {
+        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null)
     }
 
     override fun initData() {}

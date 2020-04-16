@@ -21,17 +21,16 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".activity.place.TextActivity">
-
-        </activity>
-
-        <activity android:name=".activity.main.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activity.place.PlaceTextActivity"/>
+
+        <activity android:name=".activity.main.MainActivity">
+
+        </activity>
 
     </application>
 

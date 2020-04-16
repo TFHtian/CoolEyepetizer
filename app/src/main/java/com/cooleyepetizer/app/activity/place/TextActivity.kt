@@ -5,7 +5,7 @@ import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityTextBinding
 import com.cooleyepetizer.app.viewmodel.PlaceViewModel
-import com.cooleyepetizer.lib.OnViewClickListener
+import com.cooleyepetizer.app.listener.OnViewClickListener
 
 class TextActivity : BaseMvvmActivity<ActivityTextBinding, PlaceViewModel>() {
 
@@ -22,7 +22,8 @@ class TextActivity : BaseMvvmActivity<ActivityTextBinding, PlaceViewModel>() {
         mBinding?.model = mViewModel
         mViewModel?.createUser()
         mViewModel?.getPlace(this)
-        mBinding?.listener = object : OnViewClickListener {
+        mBinding?.listener = object :
+            OnViewClickListener {
             override fun onClick(v: View) {
                 mViewModel?.updateName()
             }

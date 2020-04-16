@@ -5,17 +5,20 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-        <include layout="@layout/common_toolbar" />
+        <include
+                android:id="@+id/top_root"
+                layout="@layout/common_toolbar" />
 
         <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_below="@+id/toolbar_root">
+                android:layout_below="@+id/top_root">
 
             <FrameLayout
                     android:id="@+id/content"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"/>
+                    android:layout_height="match_parent"
+                    android:background="@color/colorThemeBg"/>
 
             <ViewStub
                     android:id="@+id/view_stub_init_loading"
