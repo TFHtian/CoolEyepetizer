@@ -1,5 +1,6 @@
 package com.cooleyepetizer.app.common_lib.mvvm
 
+import android.os.Handler
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 
@@ -14,11 +15,11 @@ abstract class BaseViewModel : ViewModel() {
     var showNetWorkErrView = MutableLiveData<Boolean>()
 
     fun setShowInitLoadView(value: Boolean){
-        showInitLoadView.value =value
+        changeValue(value,showInitLoadView)
     }
 
     fun setShowTransLoadingView(value: Boolean) {
-        showTransLoadingView.value = value
+        changeValue(value,showTransLoadingView)
     }
 
     fun setShowNoDataView(value: Boolean){
@@ -27,5 +28,15 @@ abstract class BaseViewModel : ViewModel() {
 
     fun setShowNetWorkErrView(value: Boolean){
         showNetWorkErrView.value =value
+    }
+
+    private fun changeValue(value: Boolean, changeView : MutableLiveData<Boolean>){
+        when(value) {
+            true -> changeView.value =value
+            false ->
+                Handler().postDelayed(Runnable {
+                    changeView.value =value
+                },1000)
+        }
     }
 }

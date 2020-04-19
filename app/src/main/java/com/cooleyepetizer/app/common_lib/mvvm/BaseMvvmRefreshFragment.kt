@@ -3,8 +3,12 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
+import com.scwang.smartrefresh.layout.api.RefreshLayout
+import com.scwang.smartrefresh.layout.listener.OnLoadMoreListener
+import com.scwang.smartrefresh.layout.listener.OnRefreshListener
 
-abstract class BaseMvvmRefreshFragment<DB : ViewDataBinding,  VM : BaseRefreshViewModel> :BaseMvvmFragment<DB,VM>() {
+ abstract class BaseMvvmRefreshFragment<DB : ViewDataBinding,  VM : BaseRefreshViewModel> :BaseMvvmFragment<DB,VM>() ,
+    OnRefreshListener, OnLoadMoreListener{
 
     open lateinit var mRefreshLayout: SmartRefreshLayout
 
@@ -29,8 +33,22 @@ abstract class BaseMvvmRefreshFragment<DB : ViewDataBinding,  VM : BaseRefreshVi
 
     private fun initRefreshView() {
         mRefreshLayout = getRefreshLayout()
+        mRefreshLayout.setOnRefreshListener(this)
+        mRefreshLayout.setOnLoadMoreListener(this)
     }
 
     abstract fun getRefreshLayout(): SmartRefreshLayout
 
-}
+     override fun onRefresh(refreshLayout: RefreshLayout) {
+         loadDataByRefresh()
+     }
+
+     override fun onLoadMore(refreshLayout: RefreshLayout) {
+         loadDataByLoadMore()
+     }
+
+     abstract fun loadDataByRefresh()
+
+     abstract fun loadDataByLoadMore()
+
+ }

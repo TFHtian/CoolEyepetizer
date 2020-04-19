@@ -1,36 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tl="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <RelativeLayout
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:background="@color/colorThemeBg"
-                android:layout_height="@dimen/actionBarSize">
-
-            <com.flyco.tablayout.SlidingTabLayout
-                    android:id="@+id/tab_top"
-                    tl:tl_textBold="SELECT"
-                    android:layout_width="wrap_content"
-                    android:layout_height="@dimen/dp_40"
-                    tl:tl_indicator_height="@dimen/dp_3"
-                    tl:tl_indicator_width="@dimen/dp_10"
-                    android:layout_centerVertical="true"
-                    android:layout_centerHorizontal="true"
-                    android:background="@color/colorThemeBg"
-                    tl:tl_indicator_color="@color/textTitleColor"
-                    tl:tl_indicator_corner_radius="@dimen/dp_1_5"
-                    tl:tl_textSelectColor="@color/textTitleColor"
-                    tl:tl_textUnselectColor="@color/main_bottom_tv_n" />
-        </RelativeLayout>
+        <include layout="@layout/top_tab_layout" />
 
         <androidx.viewpager.widget.ViewPager
-                android:id="@+id/view_page_home"
+                android:id="@+id/view_pager_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
     </LinearLayout>

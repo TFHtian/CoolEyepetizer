@@ -1,0 +1,3 @@
+store password£ºcooleye2020
+alias:cooleye
+password: cooleye2020

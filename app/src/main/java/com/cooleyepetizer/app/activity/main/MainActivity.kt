@@ -7,7 +7,9 @@ import com.cooleyepetizer.app.common_lib.mvvm.BaseActivity
 import com.cooleyepetizer.app.databinding.ActivityMainBinding
 import com.cooleyepetizer.app.fragment.*
 import com.cooleyepetizer.app.fragment.home.HomeFragment
-import com.jaeger.library.StatusBarUtil
+import com.cooleyepetizer.app.fragment.recommend.RecommendFragment
+import com.cooleyepetizer.app.fragment.theatre.TheatreFragment
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.activity_main.*
 import me.majiajie.pagerbottomtabstrip.NavigationController
 import me.majiajie.pagerbottomtabstrip.item.BaseTabItem
@@ -36,15 +38,15 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
             )
             .addItem(
                 newItem(
-                    R.drawable.find_n,
-                    R.drawable.find_s,
+                    R.drawable.recommend_n,
+                    R.drawable.recommend_s,
                     this.resources.getString(R.string.bottom_title_recommend)
                 )
             )
             .addItem(
                 newItem(
-                    R.drawable.culling_n,
-                    R.drawable.culling_s,
+                    R.drawable.theatre_n,
+                    R.drawable.theatre_s,
                     this.resources.getString(R.string.bottom_title_theatre)
                 )
             )
@@ -64,10 +66,16 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     }
 
     override fun setStatusBar() {
-        StatusBarUtil.setTranslucentForImageViewInFragment(this,0,null)
+        ImmersionBar.with(this)
+            .statusBarColorTransformEnable(false)
+            .statusBarDarkFont(true)
+            .init()
+
     }
 
-    override fun initData() {}
+    override fun initData() {
+
+    }
 
     override fun onBindLayout(): Int {
         return R.layout.activity_main

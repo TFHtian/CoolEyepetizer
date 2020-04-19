@@ -8,7 +8,6 @@ import java.util.ArrayList
 
 interface PlaceService {
 
-
     @GET("api/china")
     fun getProvinces(): Observable<Response<ArrayList<Province>>>
 

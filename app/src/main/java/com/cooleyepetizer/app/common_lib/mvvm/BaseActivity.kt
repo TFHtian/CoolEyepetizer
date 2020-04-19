@@ -3,7 +3,6 @@ package com.cooleyepetizer.app.common_lib.mvvm
 import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,7 @@ import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
 import com.cooleyepetizer.app.databinding.BaseCommonLayoutBinding
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
-import com.jaeger.library.StatusBarUtil
+import com.gyf.immersionbar.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.base_common_layout.*
 import kotlinx.android.synthetic.main.common_toolbar.*
@@ -44,6 +43,7 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
 
     open fun initContentView() {
         mBinding = DataBindingUtil.bind(LayoutInflater.from(this).inflate(onBindLayout(), null))
+        content.removeAllViews()
         content?.addView(mBinding!!.root, ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
             ViewGroup.LayoutParams.MATCH_PARENT
@@ -51,8 +51,13 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
     }
 
     open fun setStatusBar(){
-        StatusBarUtil.setColor(this, resources.getColor(R.color.colorThemeBg), 0)
-        setStatusTextBlack(true)
+        //设置共同沉浸式样式
+        ImmersionBar.with(this)
+            .titleBar(toolbar_root)
+            .statusBarDarkFont(true)
+            .statusBarColor(R.color.colorThemeBg)
+            .navigationBarColor(R.color.colorThemeBg)
+            .init()
     }
 
     //6.0后设置状态栏字体颜色
@@ -112,9 +117,7 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
             iv_init_loading.setImageDrawable(mStubInitLoading)
             mStubInitLoading!!.start()
         } else{
-            Handler().postDelayed(Runnable {
-                mStubInitLoading!!.stop()
-            },500)
+            mStubInitLoading!!.stop()
         }
     }
 
@@ -132,9 +135,7 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
             iv_trans_loading.setImageDrawable(mTransVLoading)
             mTransVLoading!!.start()
         }else{
-            Handler().postDelayed(Runnable {
-                mTransVLoading!!.stop()
-            },500)
+            mTransVLoading!!.stop()
         }
     }
 

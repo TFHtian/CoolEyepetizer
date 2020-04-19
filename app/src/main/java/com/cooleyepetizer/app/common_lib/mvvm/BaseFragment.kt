@@ -12,10 +12,9 @@ import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.mvvm.view.IBaseView
-import com.cooleyepetizer.app.utils.CommonUtils
 import com.github.ybq.android.spinkit.style.Circle
 import com.github.ybq.android.spinkit.style.ThreeBounce
-import com.jaeger.library.StatusBarUtil
+import com.gyf.immersionbar.ImmersionBar
 import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import kotlinx.android.synthetic.main.base_common_layout.*
 import kotlinx.android.synthetic.main.common_toolbar.*
@@ -70,18 +69,11 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
     }
 
     open fun setStatusBar(){
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-            val layoutParams = status_bar.layoutParams
-            layoutParams.width = ViewGroup.LayoutParams.MATCH_PARENT
-            layoutParams.height = CommonUtils().getStatusHeight(mActivity)
-            status_bar.layoutParams = layoutParams
-            status_bar.setBackgroundColor(resources.getColor(R.color.colorThemeBg))
-            setStatusTextBlack(true)
-        }
-    }
-
-    open fun setStatusBarColor(resId : Int){
-        status_bar.setBackgroundColor(resources.getColor(resId))
+        ImmersionBar.with(this)
+            .titleBar(toolbar_root)
+            .keyboardEnable(false)
+            .statusBarDarkFont(true)
+            .init()
     }
 
     //6.0后设置状态栏字体颜色
@@ -157,9 +149,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
             iv_init_loading.setImageDrawable(mStubInitLoading)
             mStubInitLoading!!.start()
         } else{
-            Handler().postDelayed(Runnable {
-                mStubInitLoading!!.stop()
-            },500)
+            mStubInitLoading!!.stop()
         }
     }
 
@@ -177,9 +167,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
             iv_trans_loading.setImageDrawable(mTransVLoading)
             mTransVLoading!!.start()
         }else{
-            Handler().postDelayed(Runnable {
-                mTransVLoading!!.stop()
-            },500)
+            mTransVLoading!!.stop()
         }
     }
 

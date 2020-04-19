@@ -5,7 +5,9 @@ import com.cooleyepetizer.app.adapter.home.TabLayoutAdapter
 import com.cooleyepetizer.app.common_lib.mvvm.BaseFragment
 import com.cooleyepetizer.app.databinding.FragmentHomeBinding
 import com.cooleyepetizer.app.utils.TabLayoutManage
+import com.gyf.immersionbar.ImmersionBar
 import kotlinx.android.synthetic.main.fragment_home.*
+import kotlinx.android.synthetic.main.top_tab_layout.*
 
 class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
@@ -20,12 +22,20 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
             CullingFragment(),
             FindFragment()
         )
-        view_page_home.adapter = TabLayoutAdapter(fragmentList,tabTitles,childFragmentManager)
-        view_page_home.offscreenPageLimit = 1
-        tab_top.setViewPager(view_page_home)
-        TabLayoutManage.topTabTextStyle(view_page_home,tab_top)
+        view_pager_home.adapter = TabLayoutAdapter(fragmentList,tabTitles,childFragmentManager)
+        view_pager_home.offscreenPageLimit = 1
+        tab_top.setViewPager(view_pager_home)
+        TabLayoutManage.topTabTextStyle(view_pager_home,tab_top)
     }
 
     override fun initData() {}
+
+    override fun setStatusBar() {
+        ImmersionBar.with(this)
+            .titleBar(top_tab_toolbar)
+            .keyboardEnable(false)
+            .statusBarDarkFont(false)
+            .init()
+    }
 
 }

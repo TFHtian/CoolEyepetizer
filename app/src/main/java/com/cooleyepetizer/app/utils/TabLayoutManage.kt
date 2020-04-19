@@ -17,7 +17,7 @@ class TabLayoutManage {
         fun topTabTextStyle(vp: ViewPager,tabLayout: SlidingTabLayout){
             vp.currentItem = 0//设置首个被选中
             tabLayout.getTitleView(0).typeface = Typeface.DEFAULT_BOLD
-            tabLayout.getTitleView(0).textSize = 15f//设置首个文字的大小
+            tabLayout.getTitleView(0).textSize = 16f//设置首个文字的大小
             vp.addOnPageChangeListener(object : ViewPager.OnPageChangeListener{
                 override fun onPageScrollStateChanged(state: Int) {
 
@@ -36,7 +36,7 @@ class TabLayoutManage {
                     for(n in nubs) {
                         if (position == n){
                             //选中的文字
-                            tabLayout.getTitleView(n).textSize = 15f
+                            tabLayout.getTitleView(n).textSize = 16f
                         }else{
                             //未选中的文字，并且设置未选中时的不加粗
                             tabLayout.getTitleView(n).textSize = 13f
