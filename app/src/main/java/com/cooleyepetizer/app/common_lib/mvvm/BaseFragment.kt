@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.stub_trans_loading.*
 
 abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
 
-    private lateinit var mActivity: RxAppCompatActivity
+    protected lateinit var mActivity: RxAppCompatActivity
     private lateinit var mView: View
     private var mStubInitLoading: Circle? = null
     private var mTransVLoading: ThreeBounce? =null

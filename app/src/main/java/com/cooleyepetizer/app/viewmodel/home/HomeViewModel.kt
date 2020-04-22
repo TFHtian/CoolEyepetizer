@@ -3,6 +3,7 @@ package com.cooleyepetizer.app.viewmodel.home
 import androidx.lifecycle.MutableLiveData
 import com.cooleyepetizer.app.common_lib.mvvm.BaseRefreshViewModel
 import com.cooleyepetizer.app.common_lib.net.ResultCallBack
+import com.cooleyepetizer.app.entity.eye_video.EyeCoverBean
 import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
 import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
 import com.cooleyepetizer.app.repository.home.HomeRepository
@@ -13,7 +14,7 @@ class HomeViewModel : BaseRefreshViewModel(){
     var nextPageUrl = ""
     var firstPageUrl = ""
     val dataList = MutableLiveData<ArrayList<EyeItemBean>>()
-    var bannerList = MutableLiveData<ArrayList<EyeItemBean>>()
+    var bannerList = MutableLiveData<ArrayList<EyeCoverBean>>()
 
     /**
      * 获取第一条数据(把第一页的数据作为banner，并且获得nextUrl)
@@ -26,7 +27,14 @@ class HomeViewModel : BaseRefreshViewModel(){
                 setShowInitLoadView(false)
                 firstPageUrl = result!!.nextPageUrl
                 getMoreHomeData(result!!.nextPageUrl)
-                bannerList.value = result!!.issueList[0].itemList
+                val listFirst = result!!.issueList[0].itemList
+                val videoList = ArrayList<EyeCoverBean>()
+                for (value in listFirst){
+                    if (value.type=="video"){
+                        videoList.add(value.data.cover)
+                    }
+                }
+                bannerList.value =videoList
             }
 
             override fun onFailure() {
@@ -39,11 +47,15 @@ class HomeViewModel : BaseRefreshViewModel(){
         HomeRepository().getMoreHomeData(url, object: ResultCallBack<EyeVideoResponse>{
             override fun onSuccess(result: EyeVideoResponse?) {
                 nextPageUrl = result!!.nextPageUrl
-                dataList.value = result!!.issueList[0].itemList as ArrayList<EyeItemBean>
-                when(isLoadMore.get()){
-                    false -> setEnableRefresh(true)
-                    true -> setEnableLoadMore(true)
+                /*刷选出video和textHeader*/
+                val screenList = ArrayList<EyeItemBean>()
+                for (value in result!!.issueList[0].itemList){
+                    if (value.type == "video" || value.type == "textHeader"){
+                        screenList.add(value)
+                    }
                 }
+                dataList.value = screenList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
             }
         })
     }

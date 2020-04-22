@@ -1,30 +1,37 @@
 package com.cooleyepetizer.app.fragment.home
 
-import android.util.Log
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.cooleyepetizer.app.R
+import com.cooleyepetizer.app.adapter.home.CullingVideoAdapter
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmRefreshFragment
 import com.cooleyepetizer.app.databinding.FragmentCullingBinding
+import com.cooleyepetizer.app.view.CustomHeader
 import com.cooleyepetizer.app.viewmodel.home.HomeViewModel
 import com.scwang.smartrefresh.layout.SmartRefreshLayout
 import kotlinx.android.synthetic.main.fragment_culling.*
 
 class CullingFragment : BaseMvvmRefreshFragment<FragmentCullingBinding,HomeViewModel>() {
 
+    var cullAdapter : CullingVideoAdapter? = null
+
     override fun initView() {
         isHideToolBar(true)
+        home_list.layoutManager = LinearLayoutManager(activity)
+        cullAdapter = CullingVideoAdapter()
+        home_list.adapter = cullAdapter
+        //refresh_layout.setRefreshHeader(CustomHeader(mActivity))
+        //refresh_layout.setHeaderHeight(60f)
     }
 
     override fun initData() {
         mViewModel?.getHomeFirstData()
         mViewModel?.dataList?.observe(this, Observer {
-            when(mViewModel?.isLoadMore?.get()){
-                false -> Log.e("yyyyyy","第一次加载和刷新")
-                true -> Log.e("yyyyyy","上拉加载更多")
+            if (mViewModel?.isLoadMore?.get()!!){
+                cullAdapter?.addData(it)
+            }else{
+                cullAdapter?.setList(it)
             }
-        })
-        mViewModel?.bannerList?.observe(this, Observer {
-            Log.e("uuuuu","${it.size}")
         })
     }
 

@@ -4,6 +4,7 @@
     <color name="colorPrimaryDark">#00574B</color>
     <color name="colorAccent">#D81B60</color>
 
+    <color name="transparent">#00000000</color>
     <color name="colorTheme">#ffffffff</color>
     <color name="colorWhite">#ffffffff</color>
     <color name="colorThemeBg">#F7F7F5</color>
@@ -16,5 +17,7 @@
     <!--底部导航字体颜色-->
     <color name="main_bottom_tv_s">#2c2c2c</color>
     <color name="main_bottom_tv_n">#8a8a8a</color>
+    <!--view_color-->
+    <color name="image_default_color">#f6f6f6</color>
 
 </resources>

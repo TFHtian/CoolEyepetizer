@@ -19,22 +19,12 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical">
-
-                <com.stx.xhb.xbanner.XBanner
+                <com.zhpan.bannerview.BannerViewPager
                         android:id="@+id/banner_find"
-                        android:layout_height="200dp"
+                        app:bvp_page_style="multi_page"
+                        app:bvp_indicator_slide_mode="worm"
                         android:layout_width="match_parent"
-                        android:layout_gravity="center_vertical"
-                        app:bannerBottomMargin="@dimen/dp_40"
-                        app:isShowIndicatorOnlyOne="true"
-                        app:isShowNumberIndicator="false"
-                        app:isClipChildrenMode="true"
-                        app:pageChangeDuration="800"
-                        app:pointsPosition="CENTER"
-                        app:AutoPlayTime="3000"
-                        app:isAutoPlay="false"
-                        app:isHandLoop="true"
-                        app:pointsContainerBackground="@android:color/transparent"/>
+                        android:layout_height="@dimen/dp_220"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>
