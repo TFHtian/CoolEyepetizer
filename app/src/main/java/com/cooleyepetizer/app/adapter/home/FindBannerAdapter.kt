@@ -2,10 +2,10 @@ package com.cooleyepetizer.app.adapter.home
 
 import android.view.View
 import com.cooleyepetizer.app.R
-import com.cooleyepetizer.app.entity.eye_video.EyeCoverBean
+import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
 import com.zhpan.bannerview.BaseBannerAdapter
 
-class FindBannerAdapter : BaseBannerAdapter<EyeCoverBean,FindBannerHolder>(){
+class FindBannerAdapter : BaseBannerAdapter<EyeItemBean,FindBannerHolder>(){
 
     override fun getLayoutId(viewType: Int): Int {
         return R.layout.find_banner_image_layout
@@ -17,7 +17,7 @@ class FindBannerAdapter : BaseBannerAdapter<EyeCoverBean,FindBannerHolder>(){
 
     override fun onBind(
         holder: FindBannerHolder?,
-        data: EyeCoverBean?,
+        data: EyeItemBean?,
         position: Int,
         pageSize: Int
     ) {

@@ -6,7 +6,7 @@ import com.cooleyepetizer.app.adapter.home.FindBannerAdapter
 import com.cooleyepetizer.app.adapter.home.FindBannerHolder
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmFragment
 import com.cooleyepetizer.app.databinding.FragmentFindBinding
-import com.cooleyepetizer.app.entity.eye_video.EyeCoverBean
+import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
 import com.cooleyepetizer.app.viewmodel.home.HomeViewModel
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.PageStyle
@@ -15,7 +15,7 @@ import com.zhpan.indicator.enums.IndicatorStyle
 
 class FindFragment : BaseMvvmFragment<FragmentFindBinding, HomeViewModel>() {
 
-    private lateinit var mViewPager: BannerViewPager<EyeCoverBean, FindBannerHolder>
+    private lateinit var mViewPager: BannerViewPager<EyeItemBean, FindBannerHolder>
 
     override fun initView() {
         isHideToolBar(true)

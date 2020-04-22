@@ -6,4 +6,23 @@
                 android:id="@+id/im_find_banner"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"/>
+        <RelativeLayout
+                android:paddingLeft="@dimen/dp_15"
+                android:paddingRight="@dimen/dp_15"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_45"
+                android:layout_alignParentBottom="true"
+                android:background="@color/banner_title_bg">
+                <TextView
+                        android:maxLines="1"
+                        android:ellipsize="end"
+                        android:id="@+id/tv_banner_title"
+                        android:lineSpacingMultiplier='1.5'
+                        android:textSize="@dimen/text_15sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="@color/colorWhite"
+                        android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
 </RelativeLayout>
