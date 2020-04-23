@@ -24,7 +24,8 @@
                         app:bvp_page_style="multi_page"
                         app:bvp_indicator_slide_mode="worm"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/dp_220"/>
+                        android:layout_height="@dimen/dp_220"
+                        android:layout_marginTop="@dimen/dp_5"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
     </com.scwang.smartrefresh.layout.SmartRefreshLayout>

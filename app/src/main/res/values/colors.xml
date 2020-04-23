@@ -12,6 +12,7 @@
     <!--title颜色-->
     <color name="textTitleColor">#0A0909</color>
     <color name="textSubTitleColor">#252121</color>
+    <color name="textGrayColor">#8a8a8a</color>
     <!--分割线颜色-->
     <color name="line_color">#EEF2F2</color>
     <!--底部导航字体颜色-->

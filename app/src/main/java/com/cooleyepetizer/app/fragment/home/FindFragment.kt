@@ -28,10 +28,10 @@ class FindFragment : BaseMvvmFragment<FragmentFindBinding, HomeViewModel>() {
             .setIndicatorStyle(IndicatorStyle.CIRCLE)
             .setIndicatorSliderColor(resources.getColor(R.color.transparent),resources.getColor(R.color.transparent))
             .setPageStyle(PageStyle.MULTI_PAGE)
-            .setInterval(3000)
+            .setInterval(5000)
             .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
-            .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_15))
-            .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_15))
+            .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_5))
+            .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_10))
             .setAdapter(homeAdapter)
             .create()
     }

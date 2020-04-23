@@ -4,11 +4,9 @@ import androidx.databinding.DataBindingUtil
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooleyepetizer.app.R
-import com.cooleyepetizer.app.common_lib.config.BaseApplication
 import com.cooleyepetizer.app.databinding.ItemCullingTextHeaderBinding
 import com.cooleyepetizer.app.databinding.ItemCullingVideoBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
-import com.cooleyepetizer.app.utils.ImageViewUtils
 
 class CullingVideoAdapter : BaseMultiItemQuickAdapter<EyeItemBean,BaseViewHolder>() {
 
@@ -22,7 +20,6 @@ class CullingVideoAdapter : BaseMultiItemQuickAdapter<EyeItemBean,BaseViewHolder
             1 -> {
                 val binding = DataBindingUtil.bind<ItemCullingVideoBinding>(holder.itemView)
                 if (binding!=null){
-                    ImageViewUtils.loadRoundImage(BaseApplication.instance,item.data.cover.detail,holder.getView(R.id.im_cull_video))
                     binding.cullingItem = item
                     binding.executePendingBindings()
                 }

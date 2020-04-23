@@ -1,21 +1,17 @@
-
+package com.cooleyepetizer.app.adapter
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.RequestOptions.bitmapTransform
+import com.bumptech.glide.load.resource.bitmap.CircleCrop
 import com.cooleyepetizer.app.R
-import jp.wasabeef.glide.transformations.RoundedCornersTransformation
+import com.cooleyepetizer.app.glide.GlideApp
+import com.cooleyepetizer.app.glide.GlideRoundTransform
 
 @BindingAdapter("imageFromUrl")
 fun bindImageFromUrl(view:ImageView,imageUrl:String){
     if(!imageUrl.isNullOrEmpty()){
-        Glide.with(view.context)
-            .asBitmap()
+        GlideApp.with(view.context!!)
             .load(imageUrl)
             .placeholder(R.color.image_default_color)
-            .centerCrop()
             .into(view)
     }
 }
@@ -23,10 +19,21 @@ fun bindImageFromUrl(view:ImageView,imageUrl:String){
 @BindingAdapter("imageTransFromUrl")
 fun bindImageTransFromUrl(view:ImageView,imageUrl:String?){
     if(!imageUrl.isNullOrEmpty()){
-        Glide.with(view.context)
+        GlideApp.with(view.context!!)
             .load(imageUrl)
-            .apply(bitmapTransform(RoundedCornersTransformation(20, 0, RoundedCornersTransformation.CornerType.ALL)))
+            .placeholder(R.color.image_default_color)
+            .transform(GlideRoundTransform(5))
             .into(view)
+    }
+}
+
+@BindingAdapter("imageCircleFromUrl")
+fun bindImageCircleFromUrl(view:ImageView,imageUrl:String?){
+    if(!imageUrl.isNullOrEmpty()){
+        GlideApp.with(view.context!!)
+            .load(imageUrl)
+            .placeholder(R.color.image_default_color)
+            .transform(CircleCrop()).into(view)
     }
 }
 
