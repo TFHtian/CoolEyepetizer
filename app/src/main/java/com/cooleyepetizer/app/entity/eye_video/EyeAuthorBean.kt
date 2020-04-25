@@ -5,7 +5,7 @@ data class EyeAuthorBean (
     val approvedNotReadyVideoCount: Int,
     val description: String,
     val expert: Boolean,
-    val follow: Follow,
+    val follow: EyeFollowBean,
     val icon: String,
     val id: Int,
     val ifPgc: Boolean,

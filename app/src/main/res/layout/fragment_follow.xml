@@ -2,14 +2,23 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
-            android:gravity="center"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-        <TextView
-                android:text="关注"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="vertical">
+
+        <com.scwang.smartrefresh.layout.SmartRefreshLayout
+                android:id="@+id/refresh_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/colorThemeBg">
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/follow_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+        </com.scwang.smartrefresh.layout.SmartRefreshLayout>
     </LinearLayout>
 
 </layout>

@@ -20,10 +20,14 @@
     <string name="bottom_title_recommend">推荐</string>
     <string name="bottom_title_theatre">剧场</string>
     <string name="bottom_title_personal">我的</string>
+    <string name="bottom_end">- The End -</string>
 
     <!--home-->
     <string name="find">发现</string>
     <string name="culling">精选</string>
+    <string name="author_sub_title">%s  /  #%s</string>
+    <string name="hot_rank">热门人气排行</string>
+    <string name="cull_day">每日开眼精选</string>
 
     <!--recommend-->
     <string name="follow">关注</string>

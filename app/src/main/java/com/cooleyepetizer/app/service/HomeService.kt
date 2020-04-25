@@ -1,5 +1,6 @@
 package com.cooleyepetizer.app.service
 
+import com.cooleyepetizer.app.common_lib.config.AppConfig
 import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
 import io.reactivex.Observable
 import retrofit2.Response
@@ -12,7 +13,7 @@ interface HomeService {
     /**
      * 获取第一页数据
      */
-    @GET("v2/feed?")
+    @GET(AppConfig.HOME_VIDEO_LIST)
     fun getHomeFirstData(@Query("num") num:Int): Observable<Response<EyeVideoResponse>>
 
     /**

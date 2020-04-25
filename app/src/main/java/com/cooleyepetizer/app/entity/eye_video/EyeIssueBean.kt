@@ -6,5 +6,6 @@ data class EyeIssueBean (
     val itemList: ArrayList<EyeItemBean>,
     val publishTime: Long,
     val releaseTime: Long,
-    val type: String
+    val type: String,
+    val nextPageUrl:String
 )

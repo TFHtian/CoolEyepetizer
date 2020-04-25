@@ -132,7 +132,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
 
     //默认不启用懒加载
     private fun enableLazyData(): Boolean {
-        return false
+        return true
     }
 
     open fun showInitLoadView(show: Boolean) {

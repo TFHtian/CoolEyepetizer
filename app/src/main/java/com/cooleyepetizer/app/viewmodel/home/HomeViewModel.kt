@@ -4,20 +4,22 @@ import androidx.lifecycle.MutableLiveData
 import com.cooleyepetizer.app.common_lib.mvvm.BaseRefreshViewModel
 import com.cooleyepetizer.app.common_lib.net.ResultCallBack
 import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
+import com.cooleyepetizer.app.entity.eye_video.EyeRankTabInfo
+import com.cooleyepetizer.app.entity.eye_video.EyeTab
 import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
 import com.cooleyepetizer.app.repository.home.HomeRepository
+import com.cooleyepetizer.app.repository.home.RankRepository
 
 class HomeViewModel : BaseRefreshViewModel(){
 
     private val num = 1
     var nextPageUrl = ""
     var firstPageUrl = ""
+    val tabInfo = MutableLiveData<EyeRankTabInfo>()
     val dataList = MutableLiveData<ArrayList<EyeItemBean>>()
-    var bannerList = MutableLiveData<ArrayList<EyeItemBean>>()
+    val bannerList = MutableLiveData<ArrayList<EyeItemBean>>()
 
-    /**
-     * 获取第一条数据(把第一页的数据作为banner，并且获得nextUrl)
-     */
+    /* 获取第一条数据(把第一页的数据作为banner，并且获得nextUrl)*/
     fun getHomeFirstData(){
         setShowInitLoadView(true)
         HomeRepository().getHomeFirstData(num, object : ResultCallBack<EyeVideoResponse> {
@@ -42,6 +44,7 @@ class HomeViewModel : BaseRefreshViewModel(){
         })
     }
 
+    /*获取更多列表数据*/
     private fun getMoreHomeData(url: String){
         HomeRepository().getMoreHomeData(url, object: ResultCallBack<EyeVideoResponse>{
             override fun onSuccess(result: EyeVideoResponse?) {
@@ -55,6 +58,15 @@ class HomeViewModel : BaseRefreshViewModel(){
                 }
                 dataList.value = screenList
                 if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+        })
+    }
+
+    /*获取热门tab信息*/
+    fun getRankTabInfo(){
+        RankRepository().getRankTabInfo(object: ResultCallBack<EyeRankTabInfo>{
+            override fun onSuccess(result: EyeRankTabInfo?) {
+                tabInfo.value = result
             }
         })
     }

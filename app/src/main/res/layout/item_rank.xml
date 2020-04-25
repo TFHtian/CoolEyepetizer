@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeItemBean" />
+    </data>
+    <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp_350"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="false"
+            app:cardCornerRadius="5dp"
+            app:cardElevation="0dp">
+        <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:imageTransFromUrl="@{item.data.cover.detail}"/>
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</layout>

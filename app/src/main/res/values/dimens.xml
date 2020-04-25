@@ -1,5 +1,6 @@
 <resources>
-
+    <dimen name="text_24sp">24sp</dimen>
+    <dimen name="text_22sp">22sp</dimen>
     <dimen name="text_20sp">20sp</dimen>
     <dimen name="text_18sp">18sp</dimen>
     <dimen name="text_17sp">17sp</dimen>
@@ -122,5 +123,6 @@
     <dimen name="dp_120">120dp</dimen>
     <dimen name="dp_126">126dp</dimen>
     <dimen name="dp_220">200dp</dimen>
+    <dimen name="dp_350">350dp</dimen>
 
 </resources>
