@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeCategoryBean"/>
+    </data>
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:scaleType="fitXY"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_220"
+                app:imageFromUrl="@{item.bgPicture}"/>
+
+        <TextView
+                android:textStyle="bold"
+                android:gravity="center"
+                android:textSize="@dimen/text_18sp"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/dp_220"
+                android:textColor="@color/colorWhite"
+                android:background="@color/category_text_bg"
+                android:text="@{@string/category_name(item.name)}"/>
+    </RelativeLayout>
+
+</layout>

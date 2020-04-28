@@ -21,8 +21,8 @@
                         android:fitsSystemWindows="true"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
-                    <include
-                        layout="@layout/culling_day_title"/>
+<!--                    <include-->
+<!--                        layout="@layout/culling_day_title"/>-->
                     <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/home_list"
                             android:layout_width="match_parent"

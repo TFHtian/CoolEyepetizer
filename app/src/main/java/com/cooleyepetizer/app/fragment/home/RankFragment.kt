@@ -15,7 +15,7 @@ import kotlinx.android.synthetic.main.fragment_rank.*
 class RankFragment : BaseMvvmFragment<FragmentRankBinding,RankViewModel>(){
 
     private var apiUrl: String? = null
-    private var rankAdapter: RankListAdapter? = null
+    private val rankAdapter by lazy { activity?.let { RankListAdapter() } }
 
     companion object {
         fun getInstance(apiUrl: String): RankFragment {
@@ -37,7 +37,6 @@ class RankFragment : BaseMvvmFragment<FragmentRankBinding,RankViewModel>(){
 
     override fun initView() {
         isHideToolBar(true)
-        rankAdapter = RankListAdapter()
         rank_list.adapter = rankAdapter
         val verticalConfig = StackCardLayoutManager.StackConfig()
         verticalConfig.stackScale = 0.9f

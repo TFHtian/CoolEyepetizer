@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeItemBean" />
+    </data>
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:paddingTop="@dimen/dp_10"
+            android:layout_width="wrap_content"
+            android:paddingBottom="@dimen/dp_10"
+            android:layout_height="wrap_content">
+        <ImageView
+                android:scaleType="fitXY"
+                android:layout_width="@dimen/dp_300"
+                android:layout_height="@dimen/dp_220"
+                android:layout_marginEnd="@dimen/dp_5"
+                app:imageFromUrl="@{item.data.cover.feed}"/>
+        <TextView
+                android:maxLines="1"
+                android:ellipsize="end"
+                android:text="@{item.data.title}"
+                android:lineSpacingMultiplier='1.5'
+                android:textSize="@dimen/text_14sp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dp_5"
+                android:textColor="@color/textTitleColor" />
+        <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_13sp"
+                android:layout_marginTop="@dimen/dp_5"
+                android:textColor="@color/textGrayColor"
+                android:text="@{@string/author_sub_title(item.data.author.name,item.data.category)}"/>
+    </LinearLayout>
+</layout>

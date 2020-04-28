@@ -21,5 +21,6 @@
     <!--view_color-->
     <color name="image_default_color">#f6f6f6</color>
     <color name="banner_title_bg">#45ffffff</color>
+    <color name="category_text_bg">#3000</color>
 
 </resources>

@@ -13,13 +13,12 @@ import kotlinx.android.synthetic.main.fragment_culling.*
 
 class CullingFragment : BaseMvvmRefreshFragment<FragmentCullingBinding,HomeViewModel>() {
 
-    var cullAdapter : CullingVideoAdapter? = null
+    private val cullAdapter by lazy { activity?.let { CullingVideoAdapter() } }
 
     override fun initView() {
         isHideToolBar(true)
-        home_list.layoutManager = LinearLayoutManager(activity)
-        cullAdapter = CullingVideoAdapter()
         home_list.adapter = cullAdapter
+        home_list.layoutManager = LinearLayoutManager(activity)
         //refresh_layout.setRefreshHeader(CustomHeader(mActivity))
         //refresh_layout.setHeaderHeight(60f)
     }

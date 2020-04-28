@@ -48,5 +48,7 @@ data class EyeDataBean (
     val type: String,
     val waterMarks: Any,
     val webAdTrack: Any,
-    val webUrl: EyeWebUrlBean
+    val webUrl: EyeWebUrlBean,
+    val header: EyeHeaderBean,
+    val itemList:ArrayList<EyeItemBean>
 )
