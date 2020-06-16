@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+                name="isShowCollection"
+                type="Boolean" />
+        <variable
+                name="isShowBanner"
+                type="Boolean" />
+        <variable
+                name="view"
+                type="android.view.View" />
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
+    </data>
+
+    <!--两种布局方式-->
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="@{isShowCollection ? view.VISIBLE : view.GONE}">
+            <LinearLayout
+                    android:id="@+id/ll_collection"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <ImageView
+                        android:scaleType="fitXY"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_80"
+                        imageTransFromUrl="@{item.data.itemList.get(0).data.bgPicture}"/>
+                <ImageView
+                        android:scaleType="fitXY"
+                        android:layout_weight="1"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/dp_80"
+                        android:layout_marginLeft="@dimen/dp_3"
+                        imageTransFromUrl="@{item.data.itemList.get(0).data.bgPicture}"/>
+            </LinearLayout>
+        <LinearLayout
+                android:id="@+id/ll_banner"
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="@{isShowBanner ? view.VISIBLE : view.GONE}">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_220"
+                    imageTransFromUrl="@{item.data.itemList.get(0).data.image}"/>
+        </LinearLayout>
+    </LinearLayout>
+
+</layout>

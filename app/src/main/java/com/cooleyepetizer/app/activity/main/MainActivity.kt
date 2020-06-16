@@ -6,6 +6,7 @@ import com.cooleyepetizer.app.adapter.main.CustomTabAdaptervar
 import com.cooleyepetizer.app.common_lib.mvvm.BaseActivity
 import com.cooleyepetizer.app.databinding.ActivityMainBinding
 import com.cooleyepetizer.app.fragment.*
+import com.cooleyepetizer.app.fragment.community.CommunityFragment
 import com.cooleyepetizer.app.fragment.home.HomeFragment
 import com.cooleyepetizer.app.fragment.recommend.RecommendFragment
 import com.cooleyepetizer.app.fragment.theatre.TheatreFragment
@@ -24,7 +25,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
     override fun initView() {
         isHideToolBar(true)
         fragmentList.add(HomeFragment())
-        fragmentList.add(RecommendFragment())
+        fragmentList.add(CommunityFragment())
         fragmentList.add(TheatreFragment())
         fragmentList.add(MineFragment())
 
@@ -40,7 +41,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 newItem(
                     R.drawable.recommend_n,
                     R.drawable.recommend_s,
-                    this.resources.getString(R.string.bottom_title_recommend)
+                    this.resources.getString(R.string.bottom_title_community)
                 )
             )
             .addItem(

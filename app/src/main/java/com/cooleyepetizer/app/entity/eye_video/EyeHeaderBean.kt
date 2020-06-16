@@ -13,5 +13,11 @@ data class EyeHeaderBean(
     val ifShowNotificationIcon: Boolean,
     val subTitle: Any,
     val title: String,
-    val uid: Int
+    val cover: Any,
+    val font: String,
+    val label: Any,
+    val labelList: Any,
+    val rightText: String,
+    val subTitleFont: Any,
+    val textAlign: String
 )

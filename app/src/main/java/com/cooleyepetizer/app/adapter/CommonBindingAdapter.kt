@@ -1,4 +1,5 @@
 package com.cooleyepetizer.app.adapter
+import android.view.View
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.load.resource.bitmap.CircleCrop
@@ -35,5 +36,11 @@ fun bindImageCircleFromUrl(view:ImageView,imageUrl:String?){
             .placeholder(R.color.image_default_color)
             .transform(CircleCrop()).into(view)
     }
+
+@BindingAdapter("goneUnless")
+fun goneUnless(view: View,visible: Boolean){
+    view.visibility = if (visible) View.VISIBLE else View.GONE
+}
+
 }
 

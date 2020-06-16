@@ -17,13 +17,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
 
     override fun initView() {
         isHideToolBar(true)
-        val tabTitles = arrayOf(resources.getString(R.string.culling),resources.getString(R.string.find))
+        val tabTitles = arrayOf(resources.getString(R.string.recommend),resources.getString(R.string.find),resources.getString(R.string.daily))
         val fragmentList = arrayListOf(
-            CullingFragment(),
-            FindFragment()
+            HomeRecommendFragment(),
+            HomeFindFragment(),
+            HomeDailyFragment()
         )
         view_pager_home.adapter = TabLayoutAdapter(fragmentList,tabTitles,childFragmentManager)
-        view_pager_home.offscreenPageLimit = 1
+        view_pager_home.offscreenPageLimit = 2
         tab_top.setViewPager(view_pager_home)
         TabLayoutManage.topTabTextStyle(view_pager_home,tab_top)
     }

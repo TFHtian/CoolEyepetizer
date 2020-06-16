@@ -67,6 +67,12 @@ open class RetrofitEyeFactory() {
                 // Provide your custom parameter here
                 .addQueryParameter("udid", Constant.Ud_Id)
                 .addQueryParameter("deviceModel", AppUtils.getMobileModel())
+                .addQueryParameter("vc", Constant.VC)
+                .addQueryParameter("vn", Constant.VN)
+                .addQueryParameter("size", Constant.SIZE)
+                .addQueryParameter("first_channel", Constant.FIRST_CHANNEL)
+                .addQueryParameter("last_channel", Constant.LAST_CHANNEL)
+                .addQueryParameter("system_version_code", Constant.SYSTEM_VERSION_CODE)
                 .build()
             request = originalRequest.newBuilder().url(modifiedUrl).build()
             chain.proceed(request)

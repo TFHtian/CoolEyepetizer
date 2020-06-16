@@ -17,7 +17,6 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(){
 
     override fun initView() {
         isHideToolBar(true)
-        isHideToolBar(true)
         val tabTitles = arrayOf(resources.getString(R.string.follow),resources.getString(R.string.category))
         val fragmentList = arrayListOf(
             FollowFragment(),

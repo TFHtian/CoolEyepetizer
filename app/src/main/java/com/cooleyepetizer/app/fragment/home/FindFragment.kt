@@ -25,36 +25,36 @@ class FindFragment : BaseMvvmFragment<FragmentFindBinding, HomeViewModel>() {
 
     private val mFragmentList = ArrayList<Fragment>()
 
-    private lateinit var mViewPager: BannerViewPager<EyeItemBean, FindBannerHolder>
+    //private lateinit var mViewPager: BannerViewPager<EyeItemBean, FindBannerHolder>
 
     override fun initView() {
         isHideToolBar(true)
         isHideToolBar(true)
-        mViewPager = mActivity.findViewById(R.id.banner_find)
-        val homeAdapter = FindBannerAdapter()
-        mViewPager
-            .setScrollDuration(600)
-            .setIndicatorSlideMode(IndicatorSlideMode.SCALE)
-            .setIndicatorStyle(IndicatorStyle.CIRCLE)
-            .setIndicatorSliderColor(resources.getColor(R.color.transparent),resources.getColor(R.color.transparent))
-            .setPageStyle(PageStyle.MULTI_PAGE)
-            .setInterval(5000)
-            .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
-            .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_5))
-            .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_10))
-            .setAdapter(homeAdapter)
-            .create()
+//        mViewPager = mActivity.findViewById(R.id.banner_find)
+//        val homeAdapter = FindBannerAdapter()
+//        mViewPager
+//            .setScrollDuration(600)
+//            .setIndicatorSlideMode(IndicatorSlideMode.SCALE)
+//            .setIndicatorStyle(IndicatorStyle.CIRCLE)
+//            .setIndicatorSliderColor(resources.getColor(R.color.transparent),resources.getColor(R.color.transparent))
+//            .setPageStyle(PageStyle.MULTI_PAGE)
+//            .setInterval(5000)
+//            .setIndicatorSlideMode(IndicatorSlideMode.SMOOTH)
+//            .setPageMargin(resources.getDimensionPixelOffset(R.dimen.dp_5))
+//            .setRevealWidth(resources.getDimensionPixelOffset(R.dimen.dp_10))
+//            .setAdapter(homeAdapter)
+//            .create()
     }
 
     override fun initData() {
-        mViewModel?.getHomeFirstData()
-        mViewModel?.getRankTabInfo()
-        mViewModel?.bannerList?.observe(this, Observer {
-            mViewPager.refreshData(it)
-        })
-        mViewModel?.tabInfo?.observe(this, Observer {
-            initRankFragment(it)
-        })
+//        mViewModel?.getHomeFirstData()
+//        mViewModel?.getRankTabInfo()
+//        mViewModel?.bannerList?.observe(this, Observer {
+//            mViewPager.refreshData(it)
+//        })
+//        mViewModel?.tabInfo?.observe(this, Observer {
+//            initRankFragment(it)
+//        })
     }
 
     override fun onBindLayout(): Int {

@@ -3,10 +3,7 @@ package com.cooleyepetizer.app.viewmodel.home
 import androidx.lifecycle.MutableLiveData
 import com.cooleyepetizer.app.common_lib.mvvm.BaseRefreshViewModel
 import com.cooleyepetizer.app.common_lib.net.ResultCallBack
-import com.cooleyepetizer.app.entity.eye_video.EyeItemBean
-import com.cooleyepetizer.app.entity.eye_video.EyeRankTabInfo
-import com.cooleyepetizer.app.entity.eye_video.EyeTab
-import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
+import com.cooleyepetizer.app.entity.eye_video.*
 import com.cooleyepetizer.app.repository.home.HomeRepository
 import com.cooleyepetizer.app.repository.home.RankRepository
 

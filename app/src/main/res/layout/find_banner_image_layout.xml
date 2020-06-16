@@ -6,7 +6,7 @@
 
                 <variable
                         name="item"
-                        type="com.cooleyepetizer.app.entity.eye_video.EyeItemBean" />
+                        type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
         </data>
 
         <RelativeLayout
@@ -17,7 +17,7 @@
                         android:scaleType="fitXY"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        app:imageTransFromUrl="@{item.data.cover.detail}" />
+                        app:imageTransFromUrl="@{item.data.image}" />
 
                 <RelativeLayout
                         android:layout_width="match_parent"

@@ -17,10 +17,10 @@ class TheatreFragment : BaseFragment<FragmentTheatreBinding>(){
 
     override fun initView() {
         isHideToolBar(true)
-        val tabTitles = arrayOf(resources.getString(R.string.film_showing),resources.getString(R.string.film_coming))
+        val tabTitles = arrayOf(resources.getString(R.string.film_coming),resources.getString(R.string.film_showing))
         val fragmentList = arrayListOf(
-            FilmShowingFragment(),
-            FilmComingFragment()
+            FilmComingFragment(),
+            FilmShowingFragment()
         )
         view_page_theatre.adapter = TabLayoutAdapter(fragmentList,tabTitles,childFragmentManager)
         view_page_theatre.offscreenPageLimit = 1

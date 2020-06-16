@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        
+        <variable
+                name="isShowTitle"
+                type="Boolean" />
+        <variable
+                name="isShowFollow"
+                type="Boolean" />
+        <variable
+                name="isShowMore"
+                type="Boolean" />
+        <variable
+                name="view"
+                type="android.view.View" />
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
+    </data>
+
+    <RelativeLayout
+            android:padding="@dimen/dp_15"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+        <TextView
+                android:textStyle="bold"
+                android:text="@{item.data.text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_22sp"
+                android:textColor="@color/textTitleColor"
+                android:visibility="@{isShowTitle ? view.VISIBLE : view.GONE}"/>
+        <TextView
+                android:textStyle="bold"
+                android:text="@{item.data.text}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_22sp"
+                android:textColor="@color/textTitleColor"
+                android:visibility="@{isShowFollow ? view.VISIBLE : view.GONE}"/>
+        <TextView
+                android:textStyle="bold"
+                android:paddingTop="@dimen/dp_3"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_12sp"
+                android:text="@{item.data.rightText}"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/textTitleColor"
+                android:background="@drawable/home_text_card_right_sp"
+                android:visibility="@{isShowTitle ? view.VISIBLE : view.GONE}"/>
+        <TextView
+                android:textStyle="bold"
+                android:paddingTop="@dimen/dp_3"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_12sp"
+                android:text="@{item.data.text}"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/textTitleColor"
+                android:background="@drawable/home_text_card_right_sp"
+                android:visibility="@{isShowMore ? view.VISIBLE : view.GONE}"/>
+        <TextView
+                android:textStyle="bold"
+                android:paddingTop="@dimen/dp_3"
+                android:paddingLeft="@dimen/dp_8"
+                android:paddingRight="@dimen/dp_8"
+                android:paddingBottom="@dimen/dp_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_12sp"
+                android:text="@string/add_follow"
+                android:layout_alignParentRight="true"
+                android:textColor="@color/textTitleColor"
+                android:background="@drawable/home_text_card_right_sp"
+                android:visibility="@{isShowFollow ? view.VISIBLE : view.GONE}"/>
+    </RelativeLayout>
+
+</layout>

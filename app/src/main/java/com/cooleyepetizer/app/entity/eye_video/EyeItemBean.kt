@@ -7,14 +7,19 @@ data class EyeItemBean (
     val `data`: EyeDataBean,
     val id: Int,
     val tag: Any,
-    val type: String, override var itemType: Int
+    val type: String,
+    override var itemType: Int
 ) : MultiItemEntity {
 
     fun geItemViewType(): Int{
         return when (type) {
-            "video" -> 1
-            "textHeader" -> 2
-            "banner2" -> 3
+            "horizontalScrollCard" -> 1
+            "specialSquareCardCollection" -> 2
+            "columnCardList" -> 3
+            "textCard" -> 4
+            "banner" -> 5
+            "videoSmallCard" -> 6
+            "briefCard" -> 7
             else -> 0
         }
     }
