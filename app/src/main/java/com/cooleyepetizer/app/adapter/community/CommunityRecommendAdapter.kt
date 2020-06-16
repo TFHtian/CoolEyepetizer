@@ -9,7 +9,6 @@ import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.databinding.ItemCommunityColumnsCardBinding
 import com.cooleyepetizer.app.databinding.ItemCommunityTopHeadCardBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
-import com.cooleyepetizer.app.utils.CommonUtils
 
 class CommunityRecommendAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
 

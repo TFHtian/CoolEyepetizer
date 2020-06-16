@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.notify.NotifyInteractItemBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="90dp">
+
+        <ImageView
+                android:scaleType="fitXY"
+                android:id="@+id/iv_cover"
+                android:layout_width="@dimen/dp_60"
+                android:layout_height="@dimen/dp_60"
+                android:layout_marginStart="@dimen/dp_10"
+                app:layout_constraintTop_toTopOf="parent"
+                imageTransFromUrl="@{item.data.imageUrl}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+                android:orientation="vertical"
+                android:gravity="center_vertical"
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="@dimen/dp_10"
+                android:layout_marginStart="@dimen/dp_10"
+                app:layout_constraintTop_toTopOf="@+id/iv_cover"
+                app:layout_constraintStart_toEndOf="@+id/iv_cover"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_cover">
+
+            <TextView
+                    android:lines="1"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_title"
+                    android:baselineAligned="false"
+                    android:text="@{item.data.title}"
+                    android:textSize="@dimen/text_15sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/textTitleColor"/>
+
+            <TextView
+                    android:maxLines="1"
+                    android:ellipsize="end"
+                    android:textStyle="bold"
+                    android:id="@+id/tv_view_join"
+                    android:textSize="@dimen/text_14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/dp_5"
+                    android:textColor="@color/textGrayColor"
+                    android:text="@{@string/view_join(item.data.viewCount,item.data.joinCount)}" />
+        </LinearLayout>
+
+        <View
+                android:layout_width="@dimen/dp_0"
+                android:layout_height="@dimen/dp_1"
+                android:background="@color/line_color"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/iv_cover" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

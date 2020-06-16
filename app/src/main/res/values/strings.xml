@@ -18,7 +18,7 @@
 
     <string name="bottom_title_homepage">首页</string>
     <string name="bottom_title_community">社区</string>
-    <string name="bottom_title_theatre">剧场</string>
+    <string name="bottom_title_notify">通知</string>
     <string name="bottom_title_personal">我的</string>
     <string name="bottom_end">- The End -</string>
 
@@ -40,6 +40,11 @@
     <!--community-->
     <string name="more">更多</string>
     <string name="join">+ 立即参与</string>
+    <string name="view_join">%s人浏览  /  #%s人参与</string>
+
+    <!--notify-->
+    <string name="push">推送</string>
+    <string name="interact">互动</string>
 
     <!--theatre-->
     <string name="film_showing">热映</string>

@@ -8,6 +8,7 @@ import com.cooleyepetizer.app.databinding.ActivityMainBinding
 import com.cooleyepetizer.app.fragment.*
 import com.cooleyepetizer.app.fragment.community.CommunityFragment
 import com.cooleyepetizer.app.fragment.home.HomeFragment
+import com.cooleyepetizer.app.fragment.notify.NotifyFragment
 import com.cooleyepetizer.app.fragment.recommend.RecommendFragment
 import com.cooleyepetizer.app.fragment.theatre.TheatreFragment
 import com.gyf.immersionbar.ImmersionBar
@@ -26,7 +27,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
         isHideToolBar(true)
         fragmentList.add(HomeFragment())
         fragmentList.add(CommunityFragment())
-        fragmentList.add(TheatreFragment())
+        fragmentList.add(NotifyFragment())
         fragmentList.add(MineFragment())
 
         navigationController = main_tab.custom()
@@ -48,7 +49,7 @@ class MainActivity : BaseActivity<ActivityMainBinding>() {
                 newItem(
                     R.drawable.theatre_n,
                     R.drawable.theatre_s,
-                    this.resources.getString(R.string.bottom_title_theatre)
+                    this.resources.getString(R.string.bottom_title_notify)
                 )
             )
             .addItem(

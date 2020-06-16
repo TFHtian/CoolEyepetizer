@@ -21,6 +21,10 @@ object AppConfig {
 
     const val Get_Community_Follow_Data = "v6/community/tab/follow?"
 
+    const val Get_Notify_Push_Data = "v3/messages?"
+
+    const val Get_Notify_Interact_Data = "v7/topic/list?"
+
     const val RANK_TAB_INFO = "v4/rankList"
 
     const val FOLLOW_VIDEO_LIST = "v4/tabs/follow"
