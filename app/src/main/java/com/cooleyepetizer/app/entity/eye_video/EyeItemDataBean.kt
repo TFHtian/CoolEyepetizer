@@ -75,7 +75,9 @@ data class EyeItemDataBean (
     val uid: Int,
     val waterMarks: Any,
     val webAdTrack: Any,
-    val webUrl: EyeWebUrlBean
+    val webUrl: EyeWebUrlBean,
+    val width: Int,
+    val height: Int
 ){
     fun getInformationContent(): String{
         var content = ""

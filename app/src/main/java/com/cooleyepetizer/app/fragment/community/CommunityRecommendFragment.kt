@@ -55,17 +55,20 @@ class CommunityRecommendFragment : BaseMvvmRefreshFragment<FragmentCommunityReco
     override fun initData() {
         mViewModel?.getCommunityRecommendData()
         mViewModel?.recommendList?.observe(this, Observer {
-            communityRecommendAdapter.setList(it)
+            if (mViewModel?.isLoadMore?.get()!!){
+                communityRecommendAdapter?.addData(it)
+            }else{
+                communityRecommendAdapter.setList(it)
+            }
         })
     }
 
     override fun loadDataByRefresh() {
-
+        mViewModel?.refresh()
     }
 
     override fun loadDataByLoadMore() {
-
+        mViewModel?.loadMore()
     }
-
 
 }

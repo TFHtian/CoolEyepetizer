@@ -37,6 +37,10 @@
     <string name="category_name">#%s</string>
     <string name="add_follow">+关注</string>
 
+    <!--community-->
+    <string name="more">更多</string>
+    <string name="join">+ 立即参与</string>
+
     <!--theatre-->
     <string name="film_showing">热映</string>
     <string name="film_coming">上映</string>
