@@ -31,10 +31,41 @@ class NotifyPushViewModel : BaseRefreshViewModel(){
         })
     }
 
-    override fun refreshData() {
+    private fun refreshNotifyPushData (){
+        NotifyRepository().getNotifyPushData(object:
+            ResultCallBack<NotifyPushBean> {
 
+            override fun onSuccess(result: NotifyPushBean?) {
+                nextPageUrl = result!!.nextPageUrl
+                pushList.value = result?.messageList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+
+        })
+    }
+
+    private fun getMoreNotifyPushData(url: String){
+        NotifyRepository().getMoreNotifyPushData(url,object:
+            ResultCallBack<NotifyPushBean> {
+
+            override fun onSuccess(result: NotifyPushBean?) {
+                setShowInitLoadView(false)
+                nextPageUrl = result!!.nextPageUrl
+                pushList.value = result?.messageList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+
+        })
+    }
+
+    override fun refreshData() {
+        refreshNotifyPushData()
     }
 
     override fun loadMoreData() {
+        getMoreNotifyPushData(nextPageUrl)
     }
+
+
+
 }

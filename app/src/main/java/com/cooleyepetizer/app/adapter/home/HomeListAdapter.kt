@@ -1,10 +1,13 @@
 package com.cooleyepetizer.app.adapter.home
 
+import android.view.LayoutInflater
+import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooleyepetizer.app.R
+import com.cooleyepetizer.app.common_lib.config.BaseApplication
 import com.cooleyepetizer.app.common_lib.config.BaseApplication.Companion.instance
 import com.cooleyepetizer.app.databinding.*
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
@@ -14,7 +17,7 @@ import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 
 
-class HomeFindAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
+class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
 
     init {
         addItemType(1, R.layout.item_home_horizontal_scroll_card)
@@ -68,6 +71,9 @@ class HomeFindAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolde
                 if (binding != null) {
                     binding.categoryList.adapter = squareCategoryAdapter
                     binding.categoryList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
+//                    val view: View =
+//                        LayoutInflater.from(instance).inflate(R.layout.item_category_none_layout, binding.categoryList, false)
+//                    squareCategoryAdapter.addHeaderView(view,0)
                     squareCategoryAdapter.setList(item.data.itemList)
                     binding.item = item
                     binding.executePendingBindings()

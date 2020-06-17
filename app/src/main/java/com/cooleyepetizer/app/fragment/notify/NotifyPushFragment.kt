@@ -1,9 +1,7 @@
 package com.cooleyepetizer.app.fragment.notify
 
-import android.util.Log
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.adapter.notify.NotifyPushAdapter
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmRefreshFragment
@@ -37,16 +35,20 @@ class NotifyPushFragment : BaseMvvmRefreshFragment<FragmentNotifyPushBinding,Not
     override fun initData() {
         mViewModel?.getNotifyPushData()
         mViewModel?.pushList?.observe(this, Observer {
-            pushAdapter.setList(it)
+            if (mViewModel?.isLoadMore?.get()!!){
+                pushAdapter?.addData(it)
+            }else{
+                pushAdapter.setList(it)
+            }
         })
     }
 
     override fun loadDataByRefresh() {
-
+        mViewModel?.refresh()
     }
 
     override fun loadDataByLoadMore() {
-
+        mViewModel?.loadMore()
     }
 
 }

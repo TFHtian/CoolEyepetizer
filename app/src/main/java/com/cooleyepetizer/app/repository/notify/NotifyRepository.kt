@@ -24,6 +24,20 @@ class NotifyRepository {
         })
     }
 
+    fun getMoreNotifyPushData(url: String,resultCallBack: ResultCallBack<NotifyPushBean>?){
+        val api = RetrofitEyeFactory.createService(NotifyService::class.java)
+        RetrofitEyeFactory.executeResult(api.getMoreNotifyPushData(url),object:
+            ResultTipObserver<NotifyPushBean>(BaseApplication.instance){
+            override fun onSuccess(result: NotifyPushBean?) {
+                resultCallBack?.onSuccess(result)
+            }
+
+            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+                resultCallBack?.onFailure()
+            }
+        })
+    }
+
     fun getNotifyInteractData(resultCallBack: ResultCallBack<NotifyInteractBean>?){
         val api = RetrofitEyeFactory.createService(NotifyService::class.java)
         RetrofitEyeFactory.executeResult(api.getNotifyInteractData(),object:
@@ -37,5 +51,20 @@ class NotifyRepository {
             }
         })
     }
+
+    fun getMoreNotifyInteractData(url: String,resultCallBack: ResultCallBack<NotifyInteractBean>?){
+        val api = RetrofitEyeFactory.createService(NotifyService::class.java)
+        RetrofitEyeFactory.executeResult(api.getMoreNotifyInteractData(url),object:
+            ResultTipObserver<NotifyInteractBean>(BaseApplication.instance){
+            override fun onSuccess(result: NotifyInteractBean?) {
+                resultCallBack?.onSuccess(result)
+            }
+
+            override fun onFailure(e: Throwable, isNetWorkError: Boolean) {
+                resultCallBack?.onFailure()
+            }
+        })
+    }
+
 
 }

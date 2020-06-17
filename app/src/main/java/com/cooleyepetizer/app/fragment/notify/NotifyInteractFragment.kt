@@ -35,16 +35,20 @@ class NotifyInteractFragment : BaseMvvmRefreshFragment<FragmentNotifyInteractBin
     override fun initData() {
         mViewModel?.getNotifyInteractData()
         mViewModel?.interactList?.observe(this, Observer {
-            interactArray.setList(it)
+            if (mViewModel?.isLoadMore?.get()!!){
+                interactArray?.addData(it)
+            }else{
+                interactArray?.setList(it)
+            }
         })
     }
 
     override fun loadDataByRefresh() {
-
+        mViewModel?.refresh()
     }
 
     override fun loadDataByLoadMore() {
-
+        mViewModel?.loadMore()
     }
 
 }

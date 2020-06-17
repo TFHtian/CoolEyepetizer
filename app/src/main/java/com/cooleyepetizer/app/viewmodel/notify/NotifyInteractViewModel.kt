@@ -1,13 +1,11 @@
 package com.cooleyepetizer.app.viewmodel.notify
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.cooleyepetizer.app.common_lib.mvvm.BaseRefreshViewModel
 import com.cooleyepetizer.app.common_lib.net.ResultCallBack
 import com.cooleyepetizer.app.entity.notify.NotifyInteractBean
 import com.cooleyepetizer.app.entity.notify.NotifyInteractItemBean
 import com.cooleyepetizer.app.repository.notify.NotifyRepository
-import com.google.gson.Gson
 
 class NotifyInteractViewModel : BaseRefreshViewModel(){
 
@@ -22,7 +20,6 @@ class NotifyInteractViewModel : BaseRefreshViewModel(){
 
             override fun onSuccess(result: NotifyInteractBean?) {
                 setShowInitLoadView(false)
-                Log.e("nnnnnn",Gson().toJson(result))
                 nextPageUrl = result!!.nextPageUrl
                 interactList.value = result?.itemList
             }
@@ -34,11 +31,36 @@ class NotifyInteractViewModel : BaseRefreshViewModel(){
         })
     }
 
-    override fun refreshData() {
+    private fun refreshNotifyInteractData(){
+        NotifyRepository().getNotifyInteractData(object:
+            ResultCallBack<NotifyInteractBean> {
 
+            override fun onSuccess(result: NotifyInteractBean?) {
+                nextPageUrl = result!!.nextPageUrl
+                interactList.value = result?.itemList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+        })
+    }
+
+    private fun getMoreNotifyInteractData(url: String){
+        NotifyRepository().getMoreNotifyInteractData(url,object:
+            ResultCallBack<NotifyInteractBean> {
+
+            override fun onSuccess(result: NotifyInteractBean?) {
+                nextPageUrl = result!!.nextPageUrl
+                interactList.value = result?.itemList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+        })
+    }
+
+
+    override fun refreshData() {
+        refreshNotifyInteractData()
     }
 
     override fun loadMoreData() {
-
+        getMoreNotifyInteractData(nextPageUrl)
     }
 }
