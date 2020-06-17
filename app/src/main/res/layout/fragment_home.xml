@@ -8,7 +8,7 @@
 
         <include layout="@layout/top_tab_layout" />
 
-        <com.cooleyepetizer.app.view.NoTouchViewPager
+        <androidx.viewpager.widget.ViewPager
                 android:id="@+id/view_pager_home"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />

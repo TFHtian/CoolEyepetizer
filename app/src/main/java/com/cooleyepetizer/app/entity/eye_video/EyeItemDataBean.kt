@@ -21,7 +21,7 @@ data class EyeItemDataBean (
     val description: String,
     val descriptionEditor: String,
     val descriptionPgc: String,
-    val duration: Int,
+    val duration: Long,
     val expert: Boolean,
     val favoriteAdTrack: Any,
     val follow: Any,

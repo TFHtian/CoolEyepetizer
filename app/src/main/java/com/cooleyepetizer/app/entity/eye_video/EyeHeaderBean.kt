@@ -19,5 +19,6 @@ data class EyeHeaderBean(
     val labelList: Any,
     val rightText: String,
     val subTitleFont: Any,
-    val textAlign: String
+    val textAlign: String,
+    val time: Long
 )

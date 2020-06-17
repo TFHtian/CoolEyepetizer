@@ -8,6 +8,7 @@
     <color name="colorTheme">#ffffffff</color>
     <color name="colorWhite">#ffffffff</color>
     <color name="colorThemeBg">#F7F7F5</color>
+    <color name="colorThemeBlack">#ff000000</color>
 
     <!--title颜色-->
     <color name="textTitleColor">#0A0909</color>

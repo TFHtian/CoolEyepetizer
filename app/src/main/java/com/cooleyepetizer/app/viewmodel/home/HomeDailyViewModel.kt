@@ -31,6 +31,19 @@ class HomeDailyViewModel : BaseRefreshViewModel(){
         })
     }
 
+    /*获取首页发现数据*/
+    fun refreshHomeDailyData (){
+        HomeRepository().getHomeDailyData(object:
+            ResultCallBack<EyeItemResponse> {
+
+            override fun onSuccess(result: EyeItemResponse?) {
+                nextPageUrl = result!!.nextPageUrl
+                dailyList.value = result?.itemList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+        })
+    }
+
     /*获取更多列表数据*/
     private fun getHomeLoadMoreData(url: String){
         HomeRepository().getHomeLoadMoreData(url, object: ResultCallBack<EyeItemResponse>{
@@ -43,7 +56,7 @@ class HomeDailyViewModel : BaseRefreshViewModel(){
     }
 
     override fun refreshData() {
-        getHomeDailyData()
+        refreshHomeDailyData()
     }
 
     override fun loadMoreData() {

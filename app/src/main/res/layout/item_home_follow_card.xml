@@ -3,6 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
@@ -15,11 +16,28 @@
             android:paddingRight="@dimen/dp_15"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-        <ImageView
-                android:scaleType="fitXY"
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_220"
-                app:imageTransFromUrl="@{item.data.content.data.cover.detail}"/>
+                android:layout_height="@dimen/dp_220">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_220"
+                    app:imageTransFromUrl="@{item.data.content.data.cover.detail}"/>
+            <TextView
+                    android:textStyle="bold"
+                    android:padding="@dimen/dp_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12sp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:text="@{String.valueOf(item.data.content.data.duration)}"
+                    android:background="@drawable/home_video_time_tv_sp" />
+        </RelativeLayout>
         <RelativeLayout
                 android:paddingTop="@dimen/dp_10"
                 android:layout_width="match_parent"

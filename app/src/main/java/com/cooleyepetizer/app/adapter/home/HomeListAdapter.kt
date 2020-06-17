@@ -7,7 +7,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooleyepetizer.app.R
-import com.cooleyepetizer.app.common_lib.config.BaseApplication
 import com.cooleyepetizer.app.common_lib.config.BaseApplication.Companion.instance
 import com.cooleyepetizer.app.databinding.*
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean

@@ -31,6 +31,19 @@ class HomeRecommendViewModel : BaseRefreshViewModel(){
         })
     }
 
+    /*刷新数据*/
+    private fun refreshHomeRecommendData (){
+        HomeRepository().getHomeRecommendData(object:
+            ResultCallBack<EyeItemResponse> {
+
+            override fun onSuccess(result: EyeItemResponse?) {
+                nextPageUrl = result!!.nextPageUrl
+                recommendList.value = result?.itemList
+                if (isLoadMore.get()!!) setEnableLoadMore(true) else setEnableRefresh(true)
+            }
+        })
+    }
+
     /*获取更多列表数据*/
     private fun getHomeLoadMoreData(url: String){
         HomeRepository().getHomeLoadMoreData(url, object: ResultCallBack<EyeItemResponse>{
@@ -43,7 +56,7 @@ class HomeRecommendViewModel : BaseRefreshViewModel(){
     }
 
     override fun refreshData() {
-        getHomeRecommendData()
+        refreshHomeRecommendData()
     }
 
     override fun loadMoreData() {
