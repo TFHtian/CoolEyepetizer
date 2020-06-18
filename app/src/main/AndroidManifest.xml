@@ -33,6 +33,7 @@
                 android:name="notch.config"
                 android:value="portrait|landscape" />
 
+        <!--启动界面-->
         <activity
                 android:name=".activity.start.SplashActivity"
                 android:theme="@style/SplashAppTheme">
@@ -42,10 +43,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.main.MainActivity"/>
-        <activity android:name=".activity.place.TextActivity" >
 
-        </activity>
+        <!--主界面-->
+        <activity android:name=".activity.main.MainActivity"/>
+
+        <!--首页分类界面-->
+        <activity android:name=".activity.home.CategoryActivity"/>
+
+        <activity android:name=".activity.place.TextActivity"/>
+
     </application>
 
 </manifest>

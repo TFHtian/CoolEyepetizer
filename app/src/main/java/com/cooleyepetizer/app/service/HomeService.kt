@@ -48,4 +48,10 @@ interface HomeService {
     @GET
     fun getHomeLoadMoreData(@Url url: String): Observable<Response<EyeItemResponse>>
 
+    /**
+     *获取分类列表
+     */
+    @GET(AppConfig.CATEGORY_INFO)
+    fun getCategoryListData(): Observable<Response<EyeItemResponse>>
+
 }

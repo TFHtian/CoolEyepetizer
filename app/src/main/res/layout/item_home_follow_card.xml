@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-
+        <import type="com.cooleyepetizer.app.adapter.ConverterDateTimeUtil"/>
         <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
@@ -35,8 +35,8 @@
                     android:layout_alignParentBottom="true"
                     android:layout_marginRight="@dimen/dp_5"
                     android:layout_marginBottom="@dimen/dp_5"
-                    android:text="@{String.valueOf(item.data.content.data.duration)}"
-                    android:background="@drawable/home_video_time_tv_sp" />
+                    android:background="@drawable/home_video_time_tv_sp"
+                    android:text="@{ConverterDateTimeUtil.formatSeconds(item.data.content.data.duration)}"/>
         </RelativeLayout>
         <RelativeLayout
                 android:paddingTop="@dimen/dp_10"

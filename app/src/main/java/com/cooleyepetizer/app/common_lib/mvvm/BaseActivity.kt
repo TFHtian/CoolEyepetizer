@@ -91,7 +91,7 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
     }
 
     //居中标题设置
-    open fun setCenterTitle(text: CharSequence) {
+    open fun setCenterTitle(text: String) {
         center_title.text = text
     }
 

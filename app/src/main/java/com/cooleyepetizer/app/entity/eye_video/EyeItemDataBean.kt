@@ -63,7 +63,7 @@ data class EyeItemDataBean (
     val shareAdTrack: Any,
     val slogan: Any,
     val src: Any,
-    val subTitle: Any,
+    val subTitle: String,
     val subtitles: List<Any>,
     val switchStatus: Boolean,
     val tags: List<EyeTagBean>,

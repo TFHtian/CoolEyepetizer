@@ -30,6 +30,7 @@
     <string name="author_sub_title">%s  /  #%s</string>
     <string name="hot_rank">热门人气排行</string>
     <string name="cull_day">每日开眼精选</string>
+    <string name="category_all">所有分类</string>
 
     <!--recommend-->
     <string name="follow">关注</string>
@@ -41,6 +42,7 @@
     <string name="more">更多</string>
     <string name="join">+ 立即参与</string>
     <string name="view_join">%s人浏览  /  #%s人参与</string>
+    <string name="release_date">%s发布：</string>
 
     <!--notify-->
     <string name="push">推送</string>

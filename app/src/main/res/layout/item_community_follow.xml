@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
-
+        <import type="com.cooleyepetizer.app.adapter.ConverterDateTimeUtil"/>
         <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
@@ -46,7 +46,7 @@
                     android:layout_marginLeft="@dimen/dp_10"
                     android:textColor="@color/textGrayColor"
                     android:layout_toRightOf="@+id/im_author_head"
-                    android:text="2020/06/05发布:" />
+                    android:text="@{@string/release_date(ConverterDateTimeUtil.formatDate(item.data.content.data.releaseTime))}" />
         </RelativeLayout>
         <RelativeLayout
                 android:layout_width="match_parent"
@@ -69,12 +69,29 @@
                     android:layout_alignParentBottom="true"
                     android:textColor="@color/textTitleColor"/>
         </RelativeLayout>
-        <ImageView
-                android:scaleType="fitXY"
+        <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="@dimen/dp_220"
-                android:layout_marginTop="@dimen/dp_10"
-                imageTransFromUrl="@{item.data.content.data.cover.detail}"/>
+                android:layout_height="@dimen/dp_220">
+            <ImageView
+                    android:scaleType="fitXY"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/dp_220"
+                    android:layout_marginTop="@dimen/dp_10"
+                    imageTransFromUrl="@{item.data.content.data.cover.detail}"/>
+            <TextView
+                    android:textStyle="bold"
+                    android:padding="@dimen/dp_3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_12sp"
+                    android:textColor="@color/colorWhite"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginRight="@dimen/dp_5"
+                    android:layout_marginBottom="@dimen/dp_5"
+                    android:background="@drawable/home_video_time_tv_sp"
+                    android:text="@{ConverterDateTimeUtil.formatSeconds(item.data.content.data.duration)}"/>
+        </RelativeLayout>
 
         <LinearLayout
                 android:orientation="horizontal"

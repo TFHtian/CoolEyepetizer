@@ -5,7 +5,7 @@
     <data>
         <variable
                 name="item"
-                type="com.cooleyepetizer.app.entity.eye_video.EyeCategoryBean"/>
+                type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean"/>
     </data>
     <RelativeLayout
             android:layout_width="match_parent"
@@ -14,7 +14,7 @@
                 android:scaleType="fitXY"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp_220"
-                app:imageFromUrl="@{item.bgPicture}"/>
+                app:imageFromUrl="@{item.data.image}"/>
 
         <TextView
                 android:textStyle="bold"
@@ -24,7 +24,7 @@
                 android:layout_height="@dimen/dp_220"
                 android:textColor="@color/colorWhite"
                 android:background="@color/category_text_bg"
-                android:text="@{@string/category_name(item.name)}"/>
+                android:text="@{item.data.title}"/>
     </RelativeLayout>
 
 </layout>

@@ -27,19 +27,71 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:visibility="@{isShowCollection ? view.VISIBLE : view.GONE}">
-                <ImageView
-                        android:scaleType="fitXY"
+                <RelativeLayout
                         android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/dp_70"
-                        imageTransFromUrl="@{item.data.itemList.get(0).data.bgPicture}"/>
-                <ImageView
-                        android:scaleType="fitXY"
+                        android:layout_height="@dimen/dp_70">
+                    <ImageView
+                            android:scaleType="fitXY"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_70"
+                            imageTransFromUrl="@{item.data.itemList.get(0).data.bgPicture}"/>
+                    <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true">
+                        <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_14sp"
+                                android:textColor="@color/colorWhite"
+                                android:text="@{item.data.itemList.get(0).data.title}"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_13sp"
+                                android:textColor="@color/colorWhite"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:text="@{item.data.itemList.get(0).data.subTitle}"/>
+                    </LinearLayout>
+                </RelativeLayout>
+                <RelativeLayout
                         android:layout_weight="1"
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/dp_70"
-                        android:layout_marginLeft="@dimen/dp_5"
-                        imageTransFromUrl="@{item.data.itemList.get(0).data.bgPicture}"/>
+                        android:layout_height="@dimen/dp_70">
+                    <ImageView
+                            android:scaleType="fitXY"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/dp_70"
+                            android:layout_marginLeft="@dimen/dp_5"
+                            imageTransFromUrl="@{item.data.itemList.size()>1 ? item.data.itemList.get(1).data.bgPicture : item.data.itemList.get(0).data.bgPicture}"/>
+                    <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_centerHorizontal="true">
+                        <TextView
+                                android:textStyle="bold"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_14sp"
+                                android:textColor="@color/colorWhite"
+                                android:text="@{item.data.itemList.size()>1 ? item.data.itemList.get(1).data.title : item.data.itemList.get(0).data.title}"/>
+                        <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textSize="@dimen/text_13sp"
+                                android:textColor="@color/colorWhite"
+                                android:layout_marginTop="@dimen/dp_5"
+                                android:text="@{item.data.itemList.size()>1 ? item.data.itemList.get(1).data.subTitle : item.data.itemList.get(0).data.subTitle}"/>
+                    </LinearLayout>
+                </RelativeLayout>
             </LinearLayout>
         <LinearLayout
                 android:id="@+id/ll_banner"

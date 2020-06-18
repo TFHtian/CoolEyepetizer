@@ -10,13 +10,15 @@ import com.cooleyepetizer.app.R
 import com.cooleyepetizer.app.common_lib.config.BaseApplication.Companion.instance
 import com.cooleyepetizer.app.databinding.*
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
+import com.cooleyepetizer.app.listener.HomeEventHandler
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.PageStyle
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 
-
 class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
+
+    val listener by lazy { HomeEventHandler() }
 
     init {
         addItemType(1, R.layout.item_home_horizontal_scroll_card)
@@ -70,11 +72,13 @@ class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolde
                 if (binding != null) {
                     binding.categoryList.adapter = squareCategoryAdapter
                     binding.categoryList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
-//                    val view: View =
-//                        LayoutInflater.from(instance).inflate(R.layout.item_category_none_layout, binding.categoryList, false)
-//                    squareCategoryAdapter.addHeaderView(view,0)
+                    val view: View =
+                        LayoutInflater.from(instance).inflate(R.layout.item_category_none_layout, binding.categoryList, false)
+                    binding.categoryList.addHeaderView(view)
+                    binding.categoryList.addFooterView(view)
                     squareCategoryAdapter.setList(item.data.itemList)
                     binding.item = item
+                    binding.listener = listener
                     binding.executePendingBindings()
                 }
             }

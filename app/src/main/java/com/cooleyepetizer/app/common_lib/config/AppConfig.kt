@@ -4,7 +4,6 @@ object AppConfig {
 
     const val HTTP_TIME_OUT = 20 * 1000L
 
-    //const val BASE_URL = "http://guolin.tech/"
     const val BASE_URL = "http://baobab.kaiyanapp.com/api/"
 
     const val BASE_FILM_URL = "https://api-m.mtime.cn/"
@@ -29,7 +28,7 @@ object AppConfig {
 
     const val FOLLOW_VIDEO_LIST = "v4/tabs/follow"
 
-    const val CATEGORY_INFO = "v4/categories"
+    const val CATEGORY_INFO = "v4/categories/all"
 
     const val Get_Film_Showing_Data = "Showtime/LocationMovies.api?"
 

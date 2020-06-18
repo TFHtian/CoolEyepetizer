@@ -3,6 +3,9 @@
 
     <data>
         <variable
+                name="listener"
+                type="com.cooleyepetizer.app.listener.HomeEventHandler" />
+        <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
     </data>
@@ -34,6 +37,7 @@
                     android:layout_alignParentRight="true"
                     android:textColor="@color/textTitleColor"
                     android:text="@{item.data.header.rightText}"
+                    android:onClick="@{() -> listener.jumpToCategoryAll()}"
                     android:background="@drawable/home_text_card_right_sp"/>
         </RelativeLayout>
         <androidx.core.widget.NestedScrollView
@@ -44,12 +48,10 @@
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                <androidx.recyclerview.widget.RecyclerView
+                <com.yanzhenjie.recyclerview.SwipeRecyclerView
                         android:id="@+id/category_list"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:paddingLeft="@dimen/dp_13"
-                        android:paddingRight="@dimen/dp_13"/>
+                        android:layout_height="wrap_content"/>
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
