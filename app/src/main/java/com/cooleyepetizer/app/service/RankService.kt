@@ -2,6 +2,7 @@ package com.cooleyepetizer.app.service
 
 import com.cooleyepetizer.app.common_lib.config.AppConfig
 import com.cooleyepetizer.app.entity.eye_video.EyeIssueBean
+import com.cooleyepetizer.app.entity.eye_video.EyeItemResponse
 import com.cooleyepetizer.app.entity.eye_video.EyeRankTabInfo
 import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
 import io.reactivex.Observable
@@ -19,8 +20,8 @@ interface RankService {
 
 
     /**
-     * 获取更多的 Issue
+     * 获取rank列表数据
      */
     @GET
-    fun getIssueData(@Url url: String): Observable<Response<EyeIssueBean>>
+    fun getRankListData(@Url url: String): Observable<Response<EyeItemResponse>>
 }

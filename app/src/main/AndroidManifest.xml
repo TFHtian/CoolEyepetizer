@@ -50,6 +50,12 @@
         <!--首页分类界面-->
         <activity android:name=".activity.home.CategoryActivity"/>
 
+        <!--排行榜列表界面-->
+        <activity android:name=".activity.home.RankActivity"/>
+
+        <!--主题列表界面-->
+        <activity android:name=".activity.home.ThemeActivity"/>
+
         <activity android:name=".activity.place.TextActivity"/>
 
     </application>

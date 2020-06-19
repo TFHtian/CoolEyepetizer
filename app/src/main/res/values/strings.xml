@@ -28,7 +28,8 @@
     <string name="daily">日报</string>
     <string name="culling">精选</string>
     <string name="author_sub_title">%s  /  #%s</string>
-    <string name="hot_rank">热门人气排行</string>
+    <string name="hot_rank">热门排行</string>
+    <string name="theme_square">主题广场</string>
     <string name="cull_day">每日开眼精选</string>
     <string name="category_all">所有分类</string>
 

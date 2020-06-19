@@ -17,11 +17,12 @@
             app:theme="@style/ToolbarStyle">
 
         <TextView
+                android:textStyle="bold"
                 android:id="@+id/center_title"
                 style="@style/text_title_style"
                 android:layout_gravity="center"
-                android:textColor="@color/textTitleColor"
-                android:textSize="@dimen/text_17sp" />
+                android:textSize="@dimen/text_20sp"
+                android:textColor="@color/textTitleColor"/>
     </androidx.appcompat.widget.Toolbar>
 
 </com.google.android.material.appbar.AppBarLayout>

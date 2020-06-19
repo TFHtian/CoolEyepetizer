@@ -30,6 +30,8 @@ object AppConfig {
 
     const val CATEGORY_INFO = "v4/categories/all"
 
+    const val Theme_Tab_Info = "v7/tag/tabList"
+
     const val Get_Film_Showing_Data = "Showtime/LocationMovies.api?"
 
     const val Get_Film_Coming_Data = "Movie/MovieComingNew.api?"

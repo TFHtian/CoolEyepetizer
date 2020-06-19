@@ -119,6 +119,7 @@ class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolde
                         }
                     }
                     binding.item = item
+                    binding.listener = listener
                     binding.executePendingBindings()
                 }
             }
