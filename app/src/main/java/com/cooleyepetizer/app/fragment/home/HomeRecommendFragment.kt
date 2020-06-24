@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_home_recommend.*
 
 class HomeRecommendFragment : BaseMvvmRefreshFragment<FragmentHomeRecommendBinding, HomeRecommendViewModel>(){
 
-    private val recommendAdapter by lazy { HomeListAdapter() }
+    private val recommendAdapter by lazy { activity?.let { HomeListAdapter(it) } }
 
     override fun onBindLayout(): Int {
         return R.layout.fragment_home_recommend

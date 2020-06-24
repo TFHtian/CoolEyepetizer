@@ -1,5 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
+import java.io.Serializable
+
 data class EyeItemOwnerBean(
     val actionUrl: String,
     val area: Any,
@@ -22,4 +24,4 @@ data class EyeItemOwnerBean(
     val uid: Int,
     val university: String,
     val userType: String
-)
+): Serializable

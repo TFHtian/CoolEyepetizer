@@ -1,6 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
 import com.chad.library.adapter.base.entity.MultiItemEntity
+import java.io.Serializable
 
 data class EyeListItemBean (
     val adIndex: Int,
@@ -9,7 +10,7 @@ data class EyeListItemBean (
     val tag: Any,
     val type: String,
     override var itemType: Int
-): MultiItemEntity {
+): MultiItemEntity, Serializable {
 
     fun geItemViewType(): Int{
         return when (type) {

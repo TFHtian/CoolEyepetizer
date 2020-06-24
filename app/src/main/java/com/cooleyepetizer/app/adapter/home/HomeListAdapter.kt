@@ -1,5 +1,6 @@
 package com.cooleyepetizer.app.adapter.home
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import androidx.databinding.DataBindingUtil
@@ -11,12 +12,13 @@ import com.cooleyepetizer.app.common_lib.config.BaseApplication.Companion.instan
 import com.cooleyepetizer.app.databinding.*
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
 import com.cooleyepetizer.app.listener.HomeEventHandler
+import com.trello.rxlifecycle2.components.support.RxAppCompatActivity
 import com.zhpan.bannerview.BannerViewPager
 import com.zhpan.bannerview.constants.PageStyle
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 
-class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
+class HomeListAdapter(private var mContext: Context) : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
 
     val listener by lazy { HomeEventHandler() }
 
@@ -74,8 +76,12 @@ class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolde
                     binding.categoryList.layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.HORIZONTAL)
                     val view: View =
                         LayoutInflater.from(instance).inflate(R.layout.item_category_none_layout, binding.categoryList, false)
-                    binding.categoryList.addHeaderView(view)
-                    binding.categoryList.addFooterView(view)
+                    if (binding.categoryList.headerCount<=0){
+                        binding.categoryList.addHeaderView(view)
+                    }
+                    if(binding.categoryList.footerCount<=0){
+                        binding.categoryList.addFooterView(view)
+                    }
                     squareCategoryAdapter.setList(item.data.itemList)
                     binding.item = item
                     binding.listener = listener
@@ -157,6 +163,8 @@ class HomeListAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolde
                     DataBindingUtil.bind<ItemHomeFollowCardBinding>(holder.itemView)
                 if (binding != null){
                     binding.item = item
+                    binding.listener = listener
+                    binding.activity = mContext as RxAppCompatActivity
                     binding.executePendingBindings()
                 }
             }

@@ -55,7 +55,7 @@
                 android:text="@{item.data.rightText}"
                 android:layout_alignParentRight="true"
                 android:textColor="@color/textTitleColor"
-                android:onClick="@{() -> listener.jumpToRank()}"
+                android:onClick="@{() -> listener.jumpToTextCardType(item)}"
                 android:background="@drawable/home_text_card_right_sp"
                 android:visibility="@{isShowTitle ? view.VISIBLE : view.GONE}"/>
         <TextView

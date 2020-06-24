@@ -1,5 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
+import java.io.Serializable
+
 data class EyeTagBean (
     val actionUrl: String,
     val adTrack: Any,
@@ -15,4 +17,4 @@ data class EyeTagBean (
     val name: String,
     val newestEndTime: Any,
     val tagRecType: String
-)
+): Serializable

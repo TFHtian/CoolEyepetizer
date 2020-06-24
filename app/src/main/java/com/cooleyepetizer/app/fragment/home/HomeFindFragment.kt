@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_home_find.*
 
 class HomeFindFragment : BaseMvvmFragment<FragmentHomeFindBinding,HomeFindViewModel>(){
 
-    private val findAdapter by lazy { HomeListAdapter() }
+    private val findAdapter by lazy { activity?.let { HomeListAdapter(it) } }
 
     override fun onBindLayout(): Int {
         return R.layout.fragment_home_find
@@ -30,7 +30,7 @@ class HomeFindFragment : BaseMvvmFragment<FragmentHomeFindBinding,HomeFindViewMo
     override fun initData() {
         mViewModel?.getHomeFindData()
         mViewModel?.findList?.observe(this, Observer {
-            findAdapter.setList(it)
+            findAdapter?.setList(it)
         })
     }
 

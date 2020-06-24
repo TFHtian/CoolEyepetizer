@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_home_daily.refresh_layout
 
 class HomeDailyFragment : BaseMvvmRefreshFragment<FragmentHomeDailyBinding, HomeDailyViewModel>(){
 
-    private val dailyAdapter by lazy { HomeListAdapter() }
+    private val dailyAdapter by lazy { activity?.let { HomeListAdapter(it) } }
 
     override fun onBindViewModel(): Class<HomeDailyViewModel> {
         return HomeDailyViewModel::class.java

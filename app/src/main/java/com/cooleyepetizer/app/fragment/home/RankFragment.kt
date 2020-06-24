@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_rank.*
 class RankFragment : BaseMvvmFragment<FragmentRankBinding,RankViewModel>(){
 
     private var apiUrl: String? = null
-    private val rankAdapter by lazy { activity?.let { HomeListAdapter() } }
+    private val rankAdapter by lazy { activity?.let { HomeListAdapter(it) } }
 
     companion object {
         fun getInstance(apiUrl: String): RankFragment {

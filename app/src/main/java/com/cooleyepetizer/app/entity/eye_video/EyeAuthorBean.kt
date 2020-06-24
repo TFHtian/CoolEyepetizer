@@ -1,5 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
+import java.io.Serializable
+
 data class EyeAuthorBean (
     val adTrack: Any,
     val approvedNotReadyVideoCount: Int,
@@ -15,4 +17,4 @@ data class EyeAuthorBean (
     val recSort: Int,
     val shield: EyeShieldBean,
     val videoNum: Int
-)
+) : Serializable

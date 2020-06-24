@@ -1,5 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
+import java.io.Serializable
+
 data class EyeHeaderBean(
     val actionUrl: String,
     val adTrack: Any,
@@ -21,4 +23,4 @@ data class EyeHeaderBean(
     val subTitleFont: Any,
     val textAlign: String,
     val time: Long
-)
+): Serializable

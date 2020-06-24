@@ -32,6 +32,8 @@ object AppConfig {
 
     const val Theme_Tab_Info = "v7/tag/tabList"
 
+    const val Get_Video_Detail = "v4/video/related?"
+
     const val Get_Film_Showing_Data = "Showtime/LocationMovies.api?"
 
     const val Get_Film_Coming_Data = "Movie/MovieComingNew.api?"

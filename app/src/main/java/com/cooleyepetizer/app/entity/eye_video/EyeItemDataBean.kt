@@ -1,5 +1,7 @@
 package com.cooleyepetizer.app.entity.eye_video
 
+import java.io.Serializable
+
 data class EyeItemDataBean (
     val actionUrl: String,
     val ad: Boolean,
@@ -78,7 +80,7 @@ data class EyeItemDataBean (
     val webUrl: EyeWebUrlBean,
     val width: Int,
     val height: Int
-){
+) : Serializable {
     fun getInformationContent(): String{
         var content = ""
         for (str in titleList){

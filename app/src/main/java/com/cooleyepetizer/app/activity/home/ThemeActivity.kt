@@ -7,7 +7,7 @@ import com.cooleyepetizer.app.adapter.home.TabLayoutAdapter
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityThemeBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeRankTabInfo
-import com.cooleyepetizer.app.fragment.home.RankFragment
+import com.cooleyepetizer.app.fragment.home.ThemeFragment
 import com.cooleyepetizer.app.viewmodel.home.ThemeViewModel
 import kotlinx.android.synthetic.main.activity_theme.*
 
@@ -38,9 +38,10 @@ class ThemeActivity : BaseMvvmActivity<ActivityThemeBinding,ThemeViewModel>(){
 
     private fun initThemeFragment(tabInfo: EyeRankTabInfo){
         tabInfo.tabInfo.tabList.mapTo(mTabTitleList) { it.name }
-        tabInfo.tabInfo.tabList.mapTo(mFragmentList) { RankFragment.getInstance(it.apiUrl) }
+        tabInfo.tabInfo.tabList.mapTo(mFragmentList) { ThemeFragment.getInstance(it.apiUrl) }
         view_pager_theme.adapter = TabLayoutAdapter(mFragmentList,mTabTitleList.toTypedArray(),supportFragmentManager)
         tab_theme.setViewPager(view_pager_theme)
+        view_pager_theme.offscreenPageLimit = mFragmentList.size
     }
 
 }

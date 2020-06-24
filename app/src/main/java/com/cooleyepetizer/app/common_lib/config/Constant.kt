@@ -19,4 +19,6 @@ object Constant {
     const val LAST_CHANNEL = "eyepetizer_zhihuiyun_market"
 
     const val SYSTEM_VERSION_CODE = "19"
+
+    const val BUNDLE_VIDEO_DATA = "video_data"
 }

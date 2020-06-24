@@ -56,6 +56,9 @@
         <!--主题列表界面-->
         <activity android:name=".activity.home.ThemeActivity"/>
 
+        <!--视频播放界面-->
+        <activity android:name=".activity.home.VideoPlayActivity"/>
+
         <activity android:name=".activity.place.TextActivity"/>
 
     </application>
