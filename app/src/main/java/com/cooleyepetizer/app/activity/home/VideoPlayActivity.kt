@@ -1,9 +1,10 @@
 package com.cooleyepetizer.app.activity.home
 
 import android.annotation.TargetApi
+import android.content.res.Configuration
 import android.os.Build
 import android.transition.Transition
-import android.util.Log
+import android.view.OrientationEventListener
 import android.widget.ImageView
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
@@ -15,8 +16,10 @@ import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityVideoPlayBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
 import com.cooleyepetizer.app.glide.GlideApp
+import com.cooleyepetizer.app.glide.GlideUtils
 import com.cooleyepetizer.app.viewmodel.home.VideoPlayViewModel
 import com.gyf.immersionbar.ImmersionBar
+import com.shuyu.gsyvideoplayer.GSYVideoManager
 import com.shuyu.gsyvideoplayer.utils.OrientationUtils
 import kotlinx.android.synthetic.main.activity_video_play.*
 
@@ -32,6 +35,9 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
 
     private var isTransition: Boolean = false
     private var transition: Transition? = null
+
+    private var isPlay: Boolean = false
+    private var isPause = false
 
     override fun onBindViewModel(): Class<VideoPlayViewModel> {
         return VideoPlayViewModel::class.java
@@ -144,10 +150,61 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
 
     /*播放视频*/
     private fun loadVideo(){
+        //设置URL
+        video_view.setUp(itemData.data.content.data.playUrl, false, "")
+        //开始自动播放
+        video_view.startPlayLogic()
+        //获取详情数据
         mViewModel?.getVideoDetail(itemData.data.content.data.id.toLong())
         mViewModel?.videoDetailList?.observe(this, Observer {
-            Log.e("wwwwwwwwwwww","----${it.size}")
+
         })
+    }
+
+    /* 监听返回键*/
+    override fun onBackPressed() {
+        if (orientationUtils != null) {
+            orientationUtils!!.backToProtVideo()
+        }
+        if (GSYVideoManager.backFromWindowFull(this)) {
+            return
+        }
+        super.onBackPressed()
+    }
+
+    override fun onPause() {
+        video_view.currentPlayer.onVideoPause()
+        super.onPause()
+        isPause = true
+    }
+
+    override fun onResume() {
+        video_view.currentPlayer.onVideoResume(false)
+        super.onResume()
+        isPause = false
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        video_view.gsyVideoManager
+            .setListener(
+                video_view.gsyVideoManager
+                    .lastListener()
+            )
+        video_view.gsyVideoManager.setLastListener(null)
+        GSYVideoManager.releaseAllVideos()
+        if (orientationUtils != null) {
+            orientationUtils!!.releaseListener()
+            orientationUtils = null
+        }
+        video_view.release()
+    }
+
+    override fun onConfigurationChanged(newConfig: Configuration) {
+        super.onConfigurationChanged(newConfig)
+        if (isPlay && !isPause) {
+            video_view.onConfigurationChanged(this, newConfig, orientationUtils)
+        }
     }
 
 }
