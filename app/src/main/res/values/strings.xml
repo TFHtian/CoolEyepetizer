@@ -49,6 +49,9 @@
     <string name="push">推送</string>
     <string name="interact">互动</string>
 
+    <!--video_detail-->
+    <string name="pull_down_close_page">下 拉 关 闭 页 面</string>
+
     <!--theatre-->
     <string name="film_showing">热映</string>
     <string name="film_coming">上映</string>

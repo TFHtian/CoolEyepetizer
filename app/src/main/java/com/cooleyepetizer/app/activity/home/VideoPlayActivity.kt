@@ -4,10 +4,10 @@ import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
 import android.transition.Transition
-import android.view.OrientationEventListener
 import android.widget.ImageView
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.cooleyepetizer.app.R
@@ -16,7 +16,6 @@ import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityVideoPlayBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
 import com.cooleyepetizer.app.glide.GlideApp
-import com.cooleyepetizer.app.glide.GlideUtils
 import com.cooleyepetizer.app.viewmodel.home.VideoPlayViewModel
 import com.gyf.immersionbar.ImmersionBar
 import com.shuyu.gsyvideoplayer.GSYVideoManager
@@ -63,11 +62,41 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
         itemData = intent.getSerializableExtra(Constant.BUNDLE_VIDEO_DATA) as EyeListItemBean
         isTransition = intent.getBooleanExtra(TRANSITION, false)
 
+        setBackground(itemData.data.content.data.cover.blurred)
+
         /*初始化视频的配置*/
         initVideoView()
 
         /*初始过度动画*/
         initTransition()
+
+        /*初始内容列表*/
+        initContentListView()
+    }
+
+    private fun initContentListView(){
+
+        //relatedAdapter = NewDetailRelatedAdapter(this, viewModel.relatedDataList, viewModel.videoInfoData)
+        //replyAdapter = NewDetailReplyAdapter(this, viewModel.repliesDataList)
+        //mergeAdapter = ConcatAdapter(relatedAdapter, replyAdapter)
+        mBinding?.rvContent?.layoutManager = LinearLayoutManager(this)
+        //binding.recyclerView.adapter = mergeAdapter
+        mBinding?.rvContent?.setHasFixedSize(true)
+        mBinding?.rvContent?.itemAnimator = null
+        mBinding?.refreshLayout?.run {
+            setDragRate(0.7f)
+            setHeaderTriggerRate(0.6f)
+            setFooterTriggerRate(0.6f)
+            setEnableLoadMoreWhenContentNotFull(true)
+            setEnableFooterFollowWhenNoMoreData(true)
+            setEnableFooterTranslationContent(true)
+            setEnableScrollContentWhenLoaded(true)
+            setEnableNestedScroll(true)
+            setOnRefreshListener { finish() }
+            setOnLoadMoreListener {
+                //viewModel.onLoadMore()
+            }
+        }
     }
 
     /*视频的配置*/
@@ -86,13 +115,6 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
             .load(itemData.data.content.data.cover.detail)
             .centerCrop()
             .into(imageView)
-
-        GlideApp.with(this)
-            .load(itemData.data.content.data.cover.detail)
-            .centerCrop()
-            .format(DecodeFormat.PREFER_ARGB_8888)
-            .transition(DrawableTransitionOptions().crossFade())
-            .into(im_video_bg)
 
         video_view.thumbImageView = imageView
 
@@ -159,6 +181,15 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
         mViewModel?.videoDetailList?.observe(this, Observer {
 
         })
+    }
+
+    private fun setBackground(url: String) {
+        GlideApp.with(this)
+            .load(url)
+            .centerCrop()
+            .format(DecodeFormat.PREFER_ARGB_8888)
+            .transition(DrawableTransitionOptions().crossFade())
+            .into(im_video_bg)
     }
 
     /* 监听返回键*/
