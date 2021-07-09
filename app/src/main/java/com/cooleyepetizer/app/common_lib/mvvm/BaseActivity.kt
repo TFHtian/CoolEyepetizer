@@ -79,7 +79,7 @@ abstract class BaseActivity<DB : ViewDataBinding> : RxAppCompatActivity(), IBase
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.icon_back)
         }
-       // toolbar_root.setNavigationOnClickListener(View.OnClickListener { v -> onBackClick()})
+        toolbar_root.setNavigationOnClickListener { onBackClick() }
     }
 
     open fun isHideToolBar(isHide : Boolean){

@@ -24,5 +24,7 @@
     <color name="banner_title_bg">#45ffffff</color>
     <color name="category_text_bg">#3000</color>
     <color name="color_light_black">#5000</color>
+    <!-- title 半透明背景颜色 -->
+    <color name="color_title_bg">#CCFFFFFF</color>
 
 </resources>

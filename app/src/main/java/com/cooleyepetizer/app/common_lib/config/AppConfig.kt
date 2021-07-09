@@ -30,6 +30,10 @@ object AppConfig {
 
     const val CATEGORY_INFO = "v4/categories/all"
 
+    const val CATEGORY_LIST = "v4/categories"
+
+    const val CATEGORY_DETAIL = "v4/categories/videoList?"
+
     const val Theme_Tab_Info = "v7/tag/tabList"
 
     const val Get_Video_Detail = "v4/video/related?"

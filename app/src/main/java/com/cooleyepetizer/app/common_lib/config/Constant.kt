@@ -21,4 +21,6 @@ object Constant {
     const val SYSTEM_VERSION_CODE = "19"
 
     const val BUNDLE_VIDEO_DATA = "video_data"
+
+    const val CATEGORY_INFO = "category_info"
 }
