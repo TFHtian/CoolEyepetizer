@@ -30,7 +30,7 @@ data class EyeItemDataBean (
     val footer: Any,
     val haveReward: Boolean,
     val header: EyeHeaderBean,
-    val content: EyeItemContentBean,
+    var content: EyeItemContentBean,
     val icon: String,
     val iconType: String,
     val id: Int,

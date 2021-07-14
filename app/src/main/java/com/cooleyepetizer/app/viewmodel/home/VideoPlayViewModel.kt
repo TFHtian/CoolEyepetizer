@@ -10,12 +10,19 @@ import com.cooleyepetizer.app.repository.home.VideoDetailRepository
 class VideoPlayViewModel : BaseViewModel(){
 
     val videoDetailList = MutableLiveData<ArrayList<EyeListItemBean>>()
+    var detailRelatedList = ArrayList<EyeListItemBean>()
 
-    fun getVideoDetail(id:Long){
-        VideoDetailRepository().getVideoDetail(id,object: ResultCallBack<EyeItemResponse>{
+    fun getVideoDetail(itemData: EyeListItemBean){
+        VideoDetailRepository().getVideoDetail(itemData.data.content.data.id.toLong(),object: ResultCallBack<EyeItemResponse>{
 
             override fun onSuccess(result: EyeItemResponse?) {
-                videoDetailList.value = result?.itemList
+                itemData.type = "topDetailInfo"
+                detailRelatedList.clear()
+                detailRelatedList.add(itemData)
+                result?.let {
+                    detailRelatedList.addAll(result.itemList)
+                }
+                videoDetailList.value = detailRelatedList
             }
         })
     }

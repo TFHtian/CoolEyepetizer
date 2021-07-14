@@ -1,0 +1,251 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+                name="item"
+                type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/clHeaderInfo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blackAlpha85"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+            <com.cooleyepetizer.app.view.TypefaceTextView
+                    android:id="@+id/tvTitle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="13dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_marginBottom="4dp"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="15sp"
+                    app:layout_constraintEnd_toStartOf="@id/ivFoldText"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:typeface="fzdb1Typeface"
+                    android:text="@{item.data.content.data.title}"/>
+
+            <com.cooleyepetizer.app.view.TypefaceTextView
+                    android:id="@+id/tvCategory"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textColor="@color/whiteAlpha35"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@id/tvTitle"
+                    app:layout_constraintTop_toBottomOf="@id/tvTitle"
+                    app:typeface="fzlLTypeface"
+                    android:text="@{`#` +item.data.content.data.category}" />
+
+            <ImageView
+                    android:id="@+id/ivFoldText"
+                    android:layout_width="44dp"
+                    android:layout_height="44dp"
+                    android:layout_marginEnd="13dp"
+                    android:padding="10dp"
+                    android:visibility="invisible"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@id/tvTitle" />
+
+            <com.cooleyepetizer.app.view.TypefaceTextView
+                    android:id="@+id/tvDescription"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="16dp"
+                    android:lineSpacingMultiplier="1.3"
+                    android:textColor="@color/whiteAlpha20"
+                    android:textSize="13sp"
+                    app:layout_constraintBottom_toTopOf="@id/llConsumption"
+                    app:layout_constraintEnd_toEndOf="@id/ivFoldText"
+                    app:layout_constraintStart_toStartOf="@id/tvTitle"
+                    app:layout_constraintTop_toBottomOf="@id/tvCategory"
+                    app:typeface="fzlLTypeface"
+                    android:text="@{item.data.content.data.description}" />
+
+            <LinearLayout
+                    android:id="@+id/llConsumption"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginStart="13dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvDescription">
+
+                <ImageView
+                        android:id="@+id/ivCollectionCount"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_favorite_border_white_20dp" />
+
+                <com.cooleyepetizer.app.view.TypefaceTextView
+                        android:id="@+id/tvCollectionCount"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:paddingStart="9dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/whiteAlpha35"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/ivCollectionCount"
+                        app:layout_constraintTop_toBottomOf="@id/tvDescription"
+                        app:typeface="fzlLTypeface"
+                        android:text="@{item.data.content.data.consumption.collectionCount+``}" />
+
+                <ImageView
+                        android:id="@+id/ivShare"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_share_white_20dp" />
+
+                <com.cooleyepetizer.app.view.TypefaceTextView
+                        android:id="@+id/tvShareCount"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:paddingStart="9dp"
+                        android:paddingTop="5dp"
+                        android:textColor="@color/whiteAlpha35"
+                        android:textSize="13sp"
+                        app:typeface="fzlLTypeface"
+                        android:text="@{item.data.content.data.consumption.shareCount+``}" />
+
+                <ImageView
+                        android:id="@+id/ivCache"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_cache_white_20dp" />
+
+                <com.cooleyepetizer.app.view.TypefaceTextView
+                        android:id="@+id/tvCache"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:paddingStart="9dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/cache"
+                        android:textColor="@color/whiteAlpha35"
+                        android:textSize="13sp"
+                        app:typeface="fzlLTypeface" />
+
+                <ImageView
+                        android:id="@+id/ivFavorites"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:src="@drawable/ic_star_white_20dp" />
+
+                <com.cooleyepetizer.app.view.TypefaceTextView
+                        android:id="@+id/tvFavorites"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="top"
+                        android:paddingStart="9dp"
+                        android:paddingTop="5dp"
+                        android:text="@string/favorites"
+                        android:textColor="@color/whiteAlpha35"
+                        android:textSize="13sp"
+                        app:typeface="fzlLTypeface" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAvatar"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="13dp"
+                android:layout_marginTop="14dp"
+                app:layout_constraintStart_toStartOf="@id/clHeaderInfo"
+                app:layout_constraintTop_toBottomOf="@id/clHeaderInfo" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/ivAvatarStar"
+                android:layout_width="10dp"
+                android:layout_height="10dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="1dp"
+                app:imageCircleFromUrl="@{item.data.content.data.author.icon}"
+                app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+                app:layout_constraintEnd_toEndOf="@id/ivAvatar" />
+
+        <com.cooleyepetizer.app.view.TypefaceTextView
+                android:id="@+id/tvAuthorDescription"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginEnd="10dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/whiteAlpha35"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+                app:layout_constraintEnd_toStartOf="@id/tvFollow"
+                app:layout_constraintStart_toEndOf="@id/ivAvatar"
+                app:typeface="fzlLTypeface"
+                android:text="@{item.data.content.data.author.description}"  />
+
+        <com.cooleyepetizer.app.view.TypefaceTextView
+                android:id="@+id/tvAuthorName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="4dp"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:textColor="@color/colorWhite"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@id/tvAuthorDescription"
+                app:layout_constraintEnd_toEndOf="@id/tvAuthorDescription"
+                app:layout_constraintStart_toStartOf="@id/tvAuthorDescription"
+                app:typeface="fzdb1Typeface"
+                android:text="@{item.data.content.data.author.name}"  />
+
+        <com.cooleyepetizer.app.view.TypefaceTextView
+                android:id="@+id/tvFollow"
+                android:layout_width="44dp"
+                android:layout_height="22dp"
+                android:layout_marginEnd="13dp"
+                android:gravity="center"
+                android:background="@drawable/shape_follow_radius_white_4dp_bg"
+                android:textColor="@color/colorWhite"
+                app:typeface="fzdb1Typeface"
+                app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
+                app:layout_constraintEnd_toEndOf="@id/clHeaderInfo"
+                app:layout_constraintTop_toTopOf="@id/ivAvatar" />
+
+        <View
+                android:id="@+id/divider"
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:layout_marginTop="15dp"
+                android:background="@color/whiteAlpha85"
+                app:layout_constraintTop_toBottomOf="@id/ivAvatar" />
+
+        <androidx.constraintlayout.widget.Group
+                android:id="@+id/groupAuthor"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:constraint_referenced_ids="ivAvatar,ivAvatarStar,tvAuthorDescription,tvAuthorName,tvFollow,divider"
+                tools:visibility="visible" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

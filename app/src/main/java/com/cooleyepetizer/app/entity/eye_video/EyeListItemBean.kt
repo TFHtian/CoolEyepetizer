@@ -8,7 +8,7 @@ data class EyeListItemBean (
     val `data`: EyeItemDataBean,
     val id: Int,
     val tag: Any,
-    val type: String,
+    var type: String,
     override var itemType: Int
 ): MultiItemEntity, Serializable {
 
@@ -26,6 +26,7 @@ data class EyeListItemBean (
             "ugcSelectedCardCollection" -> 10
             "communityColumnsCard" -> 11
             "autoPlayFollowCard" -> 12
+            "topDetailInfo" ->13
             else -> 0
         }
     }

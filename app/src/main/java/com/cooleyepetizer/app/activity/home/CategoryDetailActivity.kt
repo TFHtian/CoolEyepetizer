@@ -22,7 +22,7 @@ import kotlinx.android.synthetic.main.activity_category_detail.refresh_layout
  */
 class CategoryDetailActivity : BaseMvvmRefreshActivity<ActivityCategoryDetailBinding,CategoryDetailViewModel>(){
 
-    private val detailAdapter by lazy { CategoryDetailAdapter()  }
+    private val detailAdapter by lazy { CategoryDetailAdapter(this) }
 
     override fun onBindViewModel(): Class<CategoryDetailViewModel> {
         return CategoryDetailViewModel::class.java

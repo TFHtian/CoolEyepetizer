@@ -12,7 +12,7 @@ import kotlinx.android.synthetic.main.fragment_community_follow.*
 
 class CommunityFollowFragment : BaseMvvmRefreshFragment<FragmentCommunityFollowBinding, CommunityFollowViewModel>(){
 
-    private val followAdapter by lazy { CommunityFollowAdapter() }
+    private val followAdapter by lazy { activity?.let { CommunityFollowAdapter(it) } }
 
     override fun onBindViewModel(): Class<CommunityFollowViewModel> {
         return CommunityFollowViewModel::class.java
@@ -38,7 +38,7 @@ class CommunityFollowFragment : BaseMvvmRefreshFragment<FragmentCommunityFollowB
             if (mViewModel?.isLoadMore?.get()!!){
                 followAdapter?.addData(it)
             }else{
-                followAdapter.setList(it)
+                followAdapter?.setList(it)
             }
         })
     }

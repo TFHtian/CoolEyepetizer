@@ -7,6 +7,14 @@
         <import type="com.cooleyepetizer.app.adapter.ConverterDateTimeUtil"/>
 
         <variable
+                name="activity"
+                type="com.trello.rxlifecycle2.components.support.RxAppCompatActivity" />
+
+        <variable
+                name="listener"
+                type="com.cooleyepetizer.app.listener.HomeEventHandler" />
+
+        <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
 
@@ -14,7 +22,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp_250">
+            android:layout_height="@dimen/dp_250"
+            android:onClick="@{(im_cover) -> listener.jumpToVideoPlay(item,im_cover,activity)}">
 
         <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/iv_image"

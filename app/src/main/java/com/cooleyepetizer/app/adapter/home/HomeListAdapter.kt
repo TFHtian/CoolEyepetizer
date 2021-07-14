@@ -144,6 +144,8 @@ class HomeListAdapter(private var mContext: Context) : BaseMultiItemQuickAdapter
                     DataBindingUtil.bind<ItemHomeVideoSmallCardBinding>(holder.itemView)
                 if (binding != null){
                     binding.item = item
+                    binding.listener = listener
+                    binding.activity = mContext as RxAppCompatActivity
                     binding.executePendingBindings()
                 }
             }

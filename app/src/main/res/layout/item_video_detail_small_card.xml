@@ -6,14 +6,6 @@
         <import type="com.cooleyepetizer.app.adapter.ConverterDateTimeUtil"/>
 
         <variable
-                name="activity"
-                type="com.trello.rxlifecycle2.components.support.RxAppCompatActivity" />
-
-        <variable
-                name="listener"
-                type="com.cooleyepetizer.app.listener.HomeEventHandler" />
-
-        <variable
                 name="item"
                 type="com.cooleyepetizer.app.entity.eye_video.EyeListItemBean" />
     </data>
@@ -25,35 +17,34 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp_100"
             android:layout_marginTop="@dimen/dp_15">
-            <LinearLayout
-                    android:layout_weight="4"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:onClick="@{(im_cover) -> listener.jumpToVideoPlay(item,im_cover,activity)}">
-                <RelativeLayout
+        <LinearLayout
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                <ImageView
+                        android:id="@+id/im_cover"
+                        android:scaleType="fitXY"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-                    <ImageView
-                            android:id="@+id/im_cover"
-                            android:scaleType="fitXY"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            app:imageTransFromUrl="@{item.data.cover.detail}"/>
-                    <TextView
-                            android:textStyle="bold"
-                            android:padding="@dimen/dp_3"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:textSize="@dimen/text_12sp"
-                            android:textColor="@color/colorWhite"
-                            android:layout_alignParentRight="true"
-                            android:layout_alignParentBottom="true"
-                            android:layout_marginRight="@dimen/dp_5"
-                            android:layout_marginBottom="@dimen/dp_5"
-                            android:background="@drawable/home_video_time_tv_sp"
-                            android:text="@{ConverterDateTimeUtil.formatSeconds(item.data.duration)}"/>
-                </RelativeLayout>
-            </LinearLayout>
+                        android:layout_height="match_parent"
+                        app:imageTransFromUrl="@{item.data.cover.detail}"/>
+                <TextView
+                        android:textStyle="bold"
+                        android:padding="@dimen/dp_3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/text_12sp"
+                        android:textColor="@color/colorWhite"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginRight="@dimen/dp_5"
+                        android:layout_marginBottom="@dimen/dp_5"
+                        android:background="@drawable/home_video_time_tv_sp"
+                        android:text="@{ConverterDateTimeUtil.formatSeconds(item.data.duration)}"/>
+            </RelativeLayout>
+        </LinearLayout>
         <LinearLayout
                 android:layout_weight="5"
                 android:layout_width="0dp"

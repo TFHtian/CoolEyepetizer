@@ -4,16 +4,22 @@ import android.annotation.TargetApi
 import android.content.res.Configuration
 import android.os.Build
 import android.transition.Transition
+import android.util.Log
+import android.view.View
 import android.widget.ImageView
 import androidx.core.view.ViewCompat
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.load.DecodeFormat
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
+import com.chad.library.adapter.base.BaseQuickAdapter
+import com.chad.library.adapter.base.listener.OnItemClickListener
 import com.cooleyepetizer.app.R
+import com.cooleyepetizer.app.adapter.home.VideoDetailRelatedAdapter
 import com.cooleyepetizer.app.common_lib.config.Constant
 import com.cooleyepetizer.app.common_lib.mvvm.BaseMvvmActivity
 import com.cooleyepetizer.app.databinding.ActivityVideoPlayBinding
+import com.cooleyepetizer.app.entity.eye_video.EyeItemContentBean
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
 import com.cooleyepetizer.app.glide.GlideApp
 import com.cooleyepetizer.app.viewmodel.home.VideoPlayViewModel
@@ -29,6 +35,7 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
         const val TRANSITION = "TRANSITION"
     }
 
+    private val relatedAdapter by lazy { VideoDetailRelatedAdapter(this) }
     private lateinit var itemData: EyeListItemBean
     private var orientationUtils: OrientationUtils? = null
 
@@ -61,46 +68,61 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
         /*获取跳转传过来的数据*/
         itemData = intent.getSerializableExtra(Constant.BUNDLE_VIDEO_DATA) as EyeListItemBean
         isTransition = intent.getBooleanExtra(TRANSITION, false)
-
-        setBackground(itemData.data.content.data.cover.blurred)
-
+        if (itemData.data.content==null){
+            val content = EyeItemContentBean(data = itemData.data,id = 0,tag = "",type = "",adIndex = 0)
+            itemData.data.content = content
+        }
+        //获取详情数据
+        mViewModel?.getVideoDetail(itemData)
         /*初始化视频的配置*/
-        initVideoView()
+        initVideoView(itemData)
 
         /*初始过度动画*/
         initTransition()
 
         /*初始内容列表*/
         initContentListView()
+
+        mViewModel?.videoDetailList?.observe(this, Observer {
+            relatedAdapter.setList(it)
+        })
     }
 
     private fun initContentListView(){
-
-        //relatedAdapter = NewDetailRelatedAdapter(this, viewModel.relatedDataList, viewModel.videoInfoData)
-        //replyAdapter = NewDetailReplyAdapter(this, viewModel.repliesDataList)
-        //mergeAdapter = ConcatAdapter(relatedAdapter, replyAdapter)
         mBinding?.rvContent?.layoutManager = LinearLayoutManager(this)
-        //binding.recyclerView.adapter = mergeAdapter
+        mBinding?.rvContent?.adapter = relatedAdapter
         mBinding?.rvContent?.setHasFixedSize(true)
         mBinding?.rvContent?.itemAnimator = null
         mBinding?.refreshLayout?.run {
             setDragRate(0.7f)
             setHeaderTriggerRate(0.6f)
             setFooterTriggerRate(0.6f)
+            setEnableLoadMore(false)
             setEnableLoadMoreWhenContentNotFull(true)
             setEnableFooterFollowWhenNoMoreData(true)
             setEnableFooterTranslationContent(true)
             setEnableScrollContentWhenLoaded(true)
             setEnableNestedScroll(true)
             setOnRefreshListener { finish() }
-            setOnLoadMoreListener {
-                //viewModel.onLoadMore()
+        }
+        relatedAdapter.setOnItemClickListener { adapter, _, position ->
+            val item : EyeListItemBean = adapter.getItem(position) as EyeListItemBean
+            when(item.type){
+                "videoSmallCard" ->{
+                    if (item.data.content==null){
+                        val content = EyeItemContentBean(data = item.data,id = 0,tag = "",type = "",adIndex = 0)
+                        item.data.content = content
+                    }
+                    initVideoView(item)
+                    loadVideo(item)
+                    mViewModel?.getVideoDetail(item)
+                }
             }
         }
     }
 
     /*视频的配置*/
-    private fun initVideoView() {
+    private fun initVideoView(itemData: EyeListItemBean) {
         //设置旋转
         orientationUtils = OrientationUtils(this, video_view)
         //是否旋转
@@ -117,7 +139,7 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
             .into(imageView)
 
         video_view.thumbImageView = imageView
-
+        setBackground(itemData.data.content.data.cover.blurred)
         //设置返回按键功能
         video_view.backButton.setOnClickListener { onBackPressed() }
         //设置全屏按键功能
@@ -142,7 +164,7 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
             addTransitionListener()
             startPostponedEnterTransition()
         } else {
-            loadVideo()
+            loadVideo(itemData)
         }
     }
 
@@ -163,7 +185,7 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
             }
 
             override fun onTransitionEnd(p0: Transition?) {
-                loadVideo()
+                loadVideo(itemData)
                 transition?.removeListener(this)
             }
 
@@ -171,16 +193,11 @@ class VideoPlayActivity : BaseMvvmActivity<ActivityVideoPlayBinding,VideoPlayVie
     }
 
     /*播放视频*/
-    private fun loadVideo(){
+    private fun loadVideo(itemData: EyeListItemBean){
         //设置URL
         video_view.setUp(itemData.data.content.data.playUrl, false, "")
         //开始自动播放
         video_view.startPlayLogic()
-        //获取详情数据
-        mViewModel?.getVideoDetail(itemData.data.content.data.id.toLong())
-        mViewModel?.videoDetailList?.observe(this, Observer {
-
-        })
     }
 
     private fun setBackground(url: String) {
