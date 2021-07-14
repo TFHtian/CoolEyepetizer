@@ -54,6 +54,7 @@
     <string name="favorites">收藏</string>
     <string name="cache">缓存</string>
     <string name="plus_follow">+关注</string>
+    <string name="photo_count">%1$d/%2$d</string>
 
     <!--theatre-->
     <string name="film_showing">热映</string>

@@ -227,6 +227,7 @@
                 android:background="@drawable/shape_follow_radius_white_4dp_bg"
                 android:textColor="@color/colorWhite"
                 app:typeface="fzdb1Typeface"
+                android:text="关注"
                 app:layout_constraintBottom_toBottomOf="@id/ivAvatar"
                 app:layout_constraintEnd_toEndOf="@id/clHeaderInfo"
                 app:layout_constraintTop_toTopOf="@id/ivAvatar" />

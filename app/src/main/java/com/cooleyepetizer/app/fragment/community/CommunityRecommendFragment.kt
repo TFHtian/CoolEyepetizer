@@ -16,7 +16,7 @@ import kotlinx.android.synthetic.main.fragment_community_recommend.*
 
 class CommunityRecommendFragment : BaseMvvmRefreshFragment<FragmentCommunityRecommendBinding, CommunityRecommendViewModel>(){
 
-    private val communityRecommendAdapter by lazy { CommunityRecommendAdapter() }
+    private val communityRecommendAdapter by lazy {activity?.let { CommunityRecommendAdapter(it) }  }
 
     override fun onBindViewModel(): Class<CommunityRecommendViewModel> {
         return CommunityRecommendViewModel::class.java
@@ -58,7 +58,7 @@ class CommunityRecommendFragment : BaseMvvmRefreshFragment<FragmentCommunityReco
             if (mViewModel?.isLoadMore?.get()!!){
                 communityRecommendAdapter?.addData(it)
             }else{
-                communityRecommendAdapter.setList(it)
+                communityRecommendAdapter?.setList(it)
             }
         })
     }

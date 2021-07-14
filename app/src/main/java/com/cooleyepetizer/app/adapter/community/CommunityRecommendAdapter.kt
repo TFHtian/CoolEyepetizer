@@ -1,16 +1,21 @@
 package com.cooleyepetizer.app.adapter.community
 
+import android.app.Activity
+import android.content.Context
+import android.util.Log
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.cooleyepetizer.app.R
+import com.cooleyepetizer.app.activity.home.CommunityRecommendActivity
 import com.cooleyepetizer.app.databinding.ItemCommunityColumnsCardBinding
 import com.cooleyepetizer.app.databinding.ItemCommunityTopHeadCardBinding
 import com.cooleyepetizer.app.entity.eye_video.EyeListItemBean
+import com.google.gson.Gson
 
-class CommunityRecommendAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
+class CommunityRecommendAdapter( var mContext: Context) : BaseMultiItemQuickAdapter<EyeListItemBean, BaseViewHolder>() {
 
     init {
         addItemType(1, R.layout.item_community_top_head_card)
@@ -50,6 +55,9 @@ class CommunityRecommendAdapter : BaseMultiItemQuickAdapter<EyeListItemBean, Bas
                 DataBindingUtil.bind<ItemCommunityColumnsCardBinding>(holder.itemView)
                 if (binding != null){
                     binding.item = item
+                    binding.ciItem.setOnClickListener {
+                        CommunityRecommendActivity.start(mContext as Activity,data.filter { it.type=="communityColumnsCard" }, item)
+                    }
                     binding.executePendingBindings()
                 }
             }

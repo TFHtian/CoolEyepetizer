@@ -75,6 +75,8 @@ data class EyeItemDataBean (
     val titlePgc: String,
     val type: String,
     val uid: Int,
+    val url: String,
+    val urls: List<String>,
     val waterMarks: Any,
     val webAdTrack: Any,
     val webUrl: EyeWebUrlBean,
