@@ -65,6 +65,9 @@
         <!--社区推荐详情页面-->
         <activity android:name=".activity.home.CommunityRecommendActivity"/>
 
+        <!--话题详情页面-->
+        <activity android:name=".activity.home.TopicDetailActivity"/>
+
     </application>
 
 </manifest>

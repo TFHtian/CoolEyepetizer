@@ -1,10 +1,7 @@
 package com.cooleyepetizer.app.service
 
 import com.cooleyepetizer.app.common_lib.config.AppConfig
-import com.cooleyepetizer.app.entity.eye_video.CategoryBean
-import com.cooleyepetizer.app.entity.eye_video.EyeIssueBean
-import com.cooleyepetizer.app.entity.eye_video.EyeItemResponse
-import com.cooleyepetizer.app.entity.eye_video.EyeVideoResponse
+import com.cooleyepetizer.app.entity.eye_video.*
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET
@@ -67,5 +64,10 @@ interface HomeService {
     @GET(AppConfig.CATEGORY_DETAIL)
     fun getCategoryDetailData(@Query("id") id: Long): Observable<Response<EyeItemResponse>>
 
+    /**
+     * 获取话题详情
+     */
+    @GET(AppConfig.Get_TOPIC_DETAIL)
+    fun getTopicDetailData(@Query("id") id: Long): Observable<Response<TopicDetailBean>>
 
 }

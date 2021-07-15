@@ -42,4 +42,6 @@ object AppConfig {
 
     const val Get_Film_Coming_Data = "Movie/MovieComingNew.api?"
 
+    const val Get_TOPIC_DETAIL = "v7/topic/detail?"
+
 }

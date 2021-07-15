@@ -23,4 +23,6 @@ object Constant {
     const val BUNDLE_VIDEO_DATA = "video_data"
 
     const val CATEGORY_INFO = "category_info"
+
+    const val ID = "id"
 }
