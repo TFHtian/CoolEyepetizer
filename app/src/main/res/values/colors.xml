@@ -26,6 +26,8 @@
     <color name="color_light_black">#73000000</color>
     <!-- title 半透明背景颜色 -->
     <color name="color_title_bg">#CCFFFFFF</color>
+    <color name="color_line">#adadad</color>
+    <color name="color_mine_text">#888888</color>
 
     <color name="whiteAlpha85">#26ffffff</color>
     <color name="whiteAlpha80">#33ffffff</color>

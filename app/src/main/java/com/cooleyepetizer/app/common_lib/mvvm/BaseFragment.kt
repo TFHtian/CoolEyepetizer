@@ -95,7 +95,7 @@ abstract class BaseFragment<DB : ViewDataBinding> : Fragment(), IBaseView {
             actionBar.setDisplayHomeAsUpEnabled(true)
             actionBar.setHomeAsUpIndicator(R.drawable.icon_back)
         }
-        // toolbar_root.setNavigationOnClickListener(View.OnClickListener { v -> onBackClick()})
+        toolbar_root.setNavigationOnClickListener { activity?.finish() }
     }
 
     open fun isHideToolBar(isHide : Boolean){
